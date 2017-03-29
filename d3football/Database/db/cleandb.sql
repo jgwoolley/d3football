@@ -1,0 +1,15 @@
+use d3football;
+truncate drives;
+ALTER TABLE drives AUTO_INCREMENT = 1;
+truncate field_goals;
+ALTER TABLE field_goals AUTO_INCREMENT = 1;
+truncate games;
+ALTER TABLE games AUTO_INCREMENT = 1;
+truncate teams;
+ALTER TABLE teams AUTO_INCREMENT = 1;
+truncate plays;
+ALTER TABLE plays AUTO_INCREMENT = 1;
+truncate punts;
+ALTER TABLE punts AUTO_INCREMENT = 1;
+truncate goforit;
+ALTER TABLE goforit AUTO_INCREMENT = 1;

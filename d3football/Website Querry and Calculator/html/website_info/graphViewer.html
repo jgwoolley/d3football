@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Read File (via User Input selection)</title>
+        
+            
+    <style type='text/css'>
+    	.go-for-it {
+    		background-color: green;
+    	}
+    	
+    	.field-goal {
+    		background-color: red;
+    	}
+    	
+    	.punt {
+    		background-color: yellow;
+    	}
+    	
+    	.small-cell {
+    		width: 5px;
+    	}
+    
+    </style>
+    
+    
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            var footballData;
+
+            d3.csv("../data/FootballDataDump.csv", function(footballData) {
+                   this.footballData = footballData;
+
+                   createChart();
+            });
+
+            function createChart() {
+                // Load the Visualization API and the corechart package.
+                google.charts.load('current', {'packages':['corechart', 'table']}, 'visualization');
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(drawChart);
+
+                // Callback that creates and populates a data table,
+                // instantiates the pie chart, passes in the data and
+                // draws it.
+                var table;
+
+                function drawChart() {
+                	var cssClassNames = {
+                			    'headerRow': '',
+                			    'tableRow': '',
+                			    'oddTableRow': '',
+                			    'selectedTableRow': '',
+                			    'hoverTableRow': '',
+                			    'headerCell': 'small-cell',
+                			    'tableCell': 'small-cell',
+                			    'rowNumberCell': ''};
+
+                    // Create the data table.
+                    var data = new google.visualization.DataTable();
+                    var options = {'showRowNumber': true, 'showColumnNumber': true, 
+                    		'allowHtml': true, 'cssClassNames': cssClassNames, 
+                    		width: '100%', height: '100%'};
+
+                    for (var i = 0; i < footballData.length; i++) {
+                        data.addColumn('number', footballData[i]["Yard Line"]);
+                    }
+
+                    data.addRows(15);
+                    var i = 0;
+                    footballData.forEach(function(row) {
+                        for (var j = 1; j <= 15; j++) {
+                       		var goForIt = row["4th & " + j + ": GFI"];
+                       		var fieldGoal = row["4th & " + j + ": FG"];
+                       		var punt = row["4th & " + j + ": P"];
+                       		
+                       		var max = Math.max(goForIt, fieldGoal, punt);
+                       		var recommendation;
+                       		var cellVal = 0;
+                       		
+                       		if (max == goForIt) {
+                       			cellVal = 0;
+                       			recommendation = 'GFI';
+                       		} else if (max == fieldGoal) {
+                       			cellVal = 1;
+                       			recommendation = 'FG';
+                       		} else if (max == punt) {
+                       			cellVal = 2;
+                       			recommendation = 'P';
+                       		}
+                       		
+                       		data.setCell(j - 1, i, cellVal, '', {'style': 'width: 1px;'});
+                        }
+                        
+                        i++;
+                    });
+                    
+                    var formatter = new google.visualization.ColorFormat();
+                    formatter.addRange(0, 1, 'black', 'green');
+                    formatter.addRange(1, 2, 'black', 'red');
+                    formatter.addRange(2, 3, 'black', 'yellow');
+                    
+                    for (var i = 0; i < footballData.length; i++)
+                    	formatter.format(data, i);
+
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.Table(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                }
+            }
+
+
+            //$("#google-visualization-table-td underline-blue-font").mouseover(function(){
+               //  $("#google-visualization-table-td underline-blue-font").css("background-color", "black");
+            //});
+
+        </script>
+
+    </head>
+
+    
+    <body>
+        <div id="chart_div">
+        </div>
+    </body>
+</html>

@@ -1,0 +1,115 @@
+--
+-- Database: `d3football`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `drives`
+--
+
+CREATE TABLE `drives` (
+`id` integer NOT NULL primary key autoincrement,
+  `game_id` int(11) NOT NULL,
+  `team_id` int(11) NOT NULL,
+  `location` tinyint(4) NOT NULL,
+  `quarter` varchar(4) NOT NULL,
+  `starttime` time NOT NULL,
+  `points` tinyint(4) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `field_goals`
+--
+
+CREATE TABLE `field_goals` (
+  `play_id` int(11) NOT NULL primary key,
+  `distance` tinyint(4) NOT NULL,
+  `success` tinyint NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `games`
+--
+
+CREATE TABLE `games` (
+`id` integer NOT NULL primary key autoincrement,
+  `home_id` int(11) NOT NULL,
+  `road_id` int(11) NOT NULL,
+  `home_score` tinyint(3) NOT NULL,
+  `road_score` tinyint(3) NOT NULL,
+  `date` text NOT NULL,
+  `gamecode` varchar(100) NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `goforit`
+--
+
+CREATE TABLE `goforit` (
+  `play_id` int(11) NOT NULL primary key,
+  `success` tinyint NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plays`
+--
+
+CREATE TABLE `plays` (
+`id` integer NOT NULL primary key autoincrement,
+  `drive_id` int(11) NOT NULL,
+  `playnum` tinyint(4) NOT NULL,
+  `down` tinyint NOT NULL,
+  `distance` tinyint(4) NOT NULL,
+  `location` tinyint(4) NOT NULL,
+  `quarter` tinyint NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `result` tinyint(4) NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `punts`
+--
+
+CREATE TABLE `punts` (
+  `play_id` integer NOT NULL primary key,
+  `distance` tinyint(4) NOT NULL,
+  `net` int(11) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teams`
+--
+
+CREATE TABLE `teams` (
+`id` integer NOT NULL primary key autoincrement,
+  `school` varchar(100) NOT NULL
+) ;
+
+create index game_id on `drives` (`game_id`,`team_id`);
+
+create index fg_play_id on  `field_goals` (`play_id`);
+
+create index home_id on `games` (`home_id`,`road_id`,`gamecode`);
+create index road_id on `games` (`road_id`,`gamecode`);
+create index gamecode on `games` (`gamecode`);
+
+create index goforit_play_id on `goforit` (`play_id`);
+
+create index plays_drive_id on `plays` (`drive_id`);
+
+create index punts_play_id on `punts` (`play_id`);
+
+create index school on `teams` (`school`);
