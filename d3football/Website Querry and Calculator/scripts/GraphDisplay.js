@@ -1,3 +1,5 @@
+//Created by John Damits
+//Changed by Adrian Chavez
 
 var footballData;
 //open the football data file to use for the table that we are generating.
@@ -24,6 +26,7 @@ function createChart() {
 	var table;
 
 	function drawChart() {
+		allowHtml: true //allows overwrite of previous CSS
 		//class names for specific functions of the table
 		var cssClassNames = {
 			'headerRow' : '',
@@ -33,7 +36,7 @@ function createChart() {
 			'hoverTableRow' : 'hover',
 			'headerCell' : 'small-cell',
 			'tableCell' : '',
-			'rowNumberCell' : ''
+			'rowNumberCell' : 'epcell-text'
 		};
 
 		// Create the data table.
@@ -60,10 +63,10 @@ function createChart() {
 			//loop through the rows of the csv
 			for (var j = 1; j <= 15; j++) {
 				//get the values for go for it, field goal, and punt
-				var goForIt = row["4th & " + j + ": GFI"];
+				var goForIt = row["4th & " + j + ": GFI"]; 
 				var fieldGoal = row["4th & " + j + ": FG"];
 				var punt = row["4th & " + j + ": P"];
-
+					// print this out
 				//find the biggest value of the three
 				var max = Math.max(goForIt, fieldGoal, punt);
 				var cellVal = 0;
@@ -78,17 +81,19 @@ function createChart() {
 					cellVal = 2;
 				}
 
-				//set the cell at the location, cellVal and apply no text to it.
-				data.setCell(j - 1, i, cellVal + '', '');
+				//set the cell at the location, cellVal and apply the max EP value to it
+				data.setCell(j - 1, i, cellVal + '', max);
+				//data.setCell(j - 1, i, cellVal + '', max, {'className': 'epcell-text'}); example of css
+
 			}
 			i++;
 		});
 
 		//format the cells which have the value 0 to green, 1 to red, and 2 to blue.
 		var formatter = new google.visualization.ColorFormat();
-		formatter.addRange(0, 1, 'black', 'green');
-		formatter.addRange(1, 2, 'black', 'red');
-		formatter.addRange(2, 3, 'black', 'blue');
+		formatter.addRange(0, 1, 'white', 'green');
+		formatter.addRange(1, 2, 'white', 'red');
+		formatter.addRange(2, 3, 'white', 'blue');
 
 		//apply the format to all the cells.
 		for (var i = 0; i < footballData.length; i++)
@@ -101,7 +106,7 @@ function createChart() {
 
 		//Go back through the row numbers and put 4th & before the number. 
 		$("td.google-visualization-table-td.google-visualization-table-seq").each(function(e) {
-			$(this).text("4th & " + $(this).text());
+			$(this).text("" + $(this).text()); // "" string should include 1st (or) 4th & __ after support added for 1st down
 		});
 
 		//Mouse over table cell function.
@@ -122,7 +127,9 @@ function createChart() {
 
 			//set the title of this cell to give a description of the data. 
 			//it will appear when hovered over.
-			$(this).attr('title', 'Expected Points for... Go For It: ' + goForItVal + ', Field Goal: ' 
+			//$(this).attr('title', 'Expected Points for... Go For It: ' + goForItVal + ', Field Goal: ' 
+
+			$(this).attr('title', 'Go: ' + goForItVal + ', FieldGoal: ' 
 					+ fieldGoalVal + ', Punt: ' + puntVal 
 					+ ', On 4th & ' + (row + 1)
 					+ ', At the  ' + col + ' yard line.');
