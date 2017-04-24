@@ -1,3 +1,11 @@
+******** SEE WEBSITE HOSTED ON GITHUB AT https://adrianchz.github.io/ *********
+
+Project by Football Analytics team, Knox College CS 322.
+
+Original README comes after:
+
+_________________________________________________________________________
+
 Editorial by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
