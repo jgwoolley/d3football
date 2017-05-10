@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Requires access to MySQL database.
  * Should be refactored to use get methods to access data instead of returning data structure.
  */
-public class DataMapper {
+public class Querry {
 	private String url;
 	private String username;
 	private String password;
@@ -28,13 +28,13 @@ public class DataMapper {
 			"ON (plays.id = punts.play_id)\n" +
 			"WHERE plays.down = 4;";
 	
-	DataMapper() {
+	Querry() {
 		url = "jdbc:mysql://localhost/d3football?";
 		username = "root";
 		password = "admin";
 	}
 	
-	DataMapper(String url, String username, String password) {
+	Querry(String url, String username, String password) {
 		this.url = url;
 		this.username = username;
 		this.password = password;
@@ -154,7 +154,7 @@ public class DataMapper {
 	}
 	
 	public static void main(String[] args) {
-		DataMapper dMapper = new DataMapper();
+		Querry dMapper = new Querry();
 		List<HashMap<List<Integer>, List<Integer>>> mapList = dMapper.getMaps();
 		HashMap<List<Integer>, List<Integer>> driveMap = mapList.get(0);
 		System.out.println("Drive Results");
