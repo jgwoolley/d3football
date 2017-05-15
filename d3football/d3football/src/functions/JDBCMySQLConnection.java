@@ -8,7 +8,6 @@ import java.sql.SQLException;
 public class JDBCMySQLConnection {
     //static reference to itself
     private static JDBCMySQLConnection instance = new JDBCMySQLConnection();
-    public static final String URL = "jdbc:mysql://localhost:3306/football?autoReconnect=true&useSSL=false";
     public static final String USER = "root";
     public static final String PASSWORD = "memes123Abc!@";
     public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 

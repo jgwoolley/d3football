@@ -10,6 +10,7 @@ import java.util.Random;
 //Make null values able to be entered; array of double + boolean class
 public class cArray{
 	private Random rand;
+	private Random rand2;
 	
 	public static int yardlineSize = Runner.yardlineSize;
 	public static int distanceSize = Runner.distanceSize;

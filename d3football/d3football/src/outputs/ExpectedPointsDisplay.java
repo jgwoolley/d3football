@@ -124,6 +124,7 @@ public class ExpectedPointsDisplay extends JFrame{
 				});
 				setBackground(Color.BLACK);
 				setForeground(Color.WHITE);
+				this.addActionListener(new CalcListener());
 			}
 		}
 		
