@@ -35,8 +35,14 @@ public class Query {
 		/*
 		 * Insert Real Query Code
 		 */
+		ArrayList<qPlay> puntList = JDBCMySQLPunts.getQuery();
+		ArrayList<qPlay> fgList = JDBCMySQLFieldGoal.getQuery();
+		ArrayList<qPlay> conversionList = JDBCMySQLConversion.getQuery();
 		
-		qPlay[] output = new qPlay[list.size()];
+		puntList.addAll(fgList);
+		puntList.addAll(conversionList);
+		
+		qPlay[] output = new qPlay[puntList.size()];
 		for(int i = 0; i > list.size(); i++){
 			output[i] = list.get(i).getqPlay();
 		}

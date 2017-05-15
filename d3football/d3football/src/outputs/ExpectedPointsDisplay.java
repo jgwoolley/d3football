@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 //Think about using layered panes
+//Think about scrolling upper pane 
 
 
 public class ExpectedPointsDisplay extends JFrame{
@@ -80,7 +81,7 @@ public class ExpectedPointsDisplay extends JFrame{
 					}
 					add(buttons[yardline][distance]);
 				}
-			}			
+			}
 		}
 	}
 	private class CalculatorButton extends JButton{
@@ -110,9 +111,7 @@ public class ExpectedPointsDisplay extends JFrame{
 			this.setFont(new Font("Serif", Font.BOLD, 25));
 			this.setToolTipText(toolTip);
 			
-			
-
-			if(index >= Runner.EPmin && index <= Runner.EPmax){
+			if(expectedPoints[index] >= Runner.EPmin && expectedPoints[index] <= Runner.EPmax){
 				setBackground(Runner.colors[index]);
 				setForeground(Color.BLACK);
 				this.addActionListener(new CalcListener());

@@ -34,7 +34,7 @@ public class Runner {
 	//each play is assigned a color
 	public static Color[] colors = {Color.RED,Color.BLUE,Color.YELLOW,Color.GREEN,Color.MAGENTA,Color.MAGENTA};
 	
-	public static final boolean deBugMode = false;
+	public static final boolean deBugMode = true;
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		

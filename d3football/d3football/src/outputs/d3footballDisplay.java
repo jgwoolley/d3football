@@ -3,9 +3,9 @@ package outputs;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -22,13 +22,12 @@ import javax.swing.SwingConstants;
 import datastructures.cArray;
 import datastructures.qArray;
 import functions.Calculator;
-import functions.JDBCMySQLDemo;
 import functions.Query;
 import runner.Runner;
 
 public class d3footballDisplay extends JFrame{
-	JLabel outputText = new JLabel();
-
+	JLabel outputText = new JLabel();	
+	
 	public d3footballDisplay(){
 		super("Divison 3 Football Database Query - Adrian, Elaine, Randy, Mark, James");
 		
@@ -40,85 +39,87 @@ public class d3footballDisplay extends JFrame{
 	
         ImageIcon appIcon = new ImageIcon("lib/Frogger.gif");
         setIconImage(appIcon.getImage());  
-		updateText("Hello. Please select how you want to run our program!");
+		
+        updateText("Hello. Please select how you want to run our program!");
 		
 		JButton randomButton = new JButton();
-		randomButton.setText("Create Random Data");
+		randomButton.setText("Generate .CSV Randomly");
 		randomButton.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent ae) {
-
-        		int length = Runner.downs.length;		
-    			
-    			for(int i = 0; i < length;i++){
+            	updateText(".CSV Files Generated Randomly");
+    			for(int i = 0; i < 1;i++){
     				cArray array = new cArray();
     				array.randomizeArray(false);
-    				
-    				ExpectedPointsDisplay display = new ExpectedPointsDisplay(Runner.downs[i],array);
-    				display.label.setText("Generated Random Expected Points .CSV File, and Displaying Results");
     				try {
-						Writer cw = new Writer(Runner.downs[i], array);
+						Writer cw = new Writer(i + 1, array);
 					} catch (FileNotFoundException e) {
-						outputText.setText(e.getMessage());						
 						e.printStackTrace();
 					} catch (IOException e) {
-						outputText.setText(e.getMessage());
 						e.printStackTrace();
 					}	
-
             	}
             }
-
 		}
         );
 		JButton databaseButton = new JButton();
-		databaseButton.setText("Use Database");
+		databaseButton.setText("Generate .CSV from Database");
+		
 		databaseButton.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent ae) {
-            	outputText.setText("Not Actually Implemented, But Here's the Demo Code");
-            	JDBCMySQLDemo demo = new JDBCMySQLDemo();
-            	
-            	/*
-    			qArray query = Query.Query();
-    			cArray calculation = Calculator.calculation(query);    			
-    			
-    			int length = Runner.downs.length;		
-    			
-    			for(int i = 0; i < length;i++){	
-    				ExpectedPointsDisplay display = new ExpectedPointsDisplay(Runner.downs[i],calculation);
-    				if(Runner.deBugMode) System.out.println("Down " + i + "Display created");
-    				display.label.setText("With MySql Database, Generating .CSV File, and Displaying Results");				
-    				try {
-						Writer cw = new Writer(Runner.downs[i], calculation);
+            	updateText(".CSV from Database Generated");   			
+    			    			
+    			for(int i = 0; i < 1;i++){			
+	    			qArray query = Query.Query();
+	    			cArray calculation = Calculator.calculation(query); 
+	    			
+    				try {    					    	    			
+						Writer cw = new Writer(i + 1, calculation);
 					} catch (FileNotFoundException e) {
-						label.setText(e.getMessage());						
 						e.printStackTrace();
 					} catch (IOException e) {
-						label.setText(e.getMessage());
 						e.printStackTrace();
 					}
     				if(Runner.deBugMode) System.out.println("Down " + i + "Writer created");
     			}
-    			*/
-            	}
             }
+        }
         );
 		
 		JButton readCSV = new JButton();
-		readCSV.setText("Read compatible .CSV File");
+		readCSV.setText("Read compatible .CSV Files");
 		
-		readCSV.addActionListener( new ActionListener(){
+		readCSV.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae) {
-				updateText("Not Implemented yet, ya dangus!");
+            	String output = "Down ";
+            	            	
+            	for(int i = 0; i <1;i++){
+					output+=Reader.read((i+1), ((i+1)+"down.csv"));
+            	}
+            	updateText(output + "Reading is complete for .CSV files");
+    
             }
 		}
         );
-
 		
-
+		JButton deleteCSV = new JButton();
+		deleteCSV.setText("Delete .CSV Files");
+		
+		deleteCSV.addActionListener( new ActionListener(){
+            public void actionPerformed(ActionEvent ae) {
+            	updateText(".CSV Files Deleted");
+            	for(int i = 0; i < 4;i++){
+            		File temp = new File((i+1) + "down.csv");
+            		temp.delete();
+            	}
+            }
+		}
+        );				
+		
 		JPanel pane = new JPanel();
-		pane.setLayout(new GridLayout(1,3));
+		pane.setLayout(new GridLayout(2,2));
 		pane.add(databaseButton);
 		pane.add(randomButton);
+		pane.add(deleteCSV);
 		pane.add(readCSV);
 		JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,outputText,pane);
 		split.setResizeWeight(0.9);
@@ -131,9 +132,11 @@ public class d3footballDisplay extends JFrame{
 	
 	public void updateText(String newText) {
 		outputText.setText(newText);
-		JLabel centeredText = new JLabel(outputText.getText(), SwingConstants.CENTER);
-		centeredText.setFont(new Font("Dialog", Font.BOLD, 28));
-		outputText = centeredText;
+		outputText.setFont(new Font("Dialog", Font.BOLD, 18));
 
+		/*
+		JLabel centeredText = new JLabel(outputText.getText(), SwingConstants.CENTER);
+		outputText = centeredText;
+		*/
 	}
 }
