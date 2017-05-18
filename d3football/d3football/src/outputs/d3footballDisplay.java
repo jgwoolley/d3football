@@ -20,7 +20,6 @@ import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 
 import datastructures.cArray;
-import datastructures.pArray;
 import datastructures.qArray;
 import functions.Calculator;
 import functions.Query;
@@ -71,7 +70,7 @@ public class d3footballDisplay extends JFrame{
     			    			
     			for(int i = 0; i < 1;i++){			
 	    			qArray query = Query.Query();
-	    			cArray calculation = Calculator.calculation(query, new pArray()); 
+	    			cArray calculation = Calculator.calculation(query); 
 	    			
     				try {    					    	    			
 						Writer cw = new Writer(i + 1, calculation);
