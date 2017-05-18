@@ -38,41 +38,6 @@ public class Runner {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		
-		d3footballDisplay fb = new d3footballDisplay();
-		
-		/*
-		boolean helloIsMyDatabasethere = false;
-				
-		if(helloIsMyDatabasethere){
-			if(deBugMode) System.out.println("Database was found");
-			qArray query = Query.Query();
-			cArray calculation = Calculator.calculation(query);
-			
-			int length = downs.length;		
-			
-			for(int i = 0; i < length;i++){	
-				Display display = new Display(downs[i],calculation);
-				if(deBugMode) System.out.println("Down " + i + "Display created");
-				display.label.setText("This is impossible right now");				
-				Writer cw = new Writer(downs[i], calculation);
-				if(deBugMode) System.out.println("Down " + i + "Writer created");
-			}
-		}
-		else{			
-			if(deBugMode) System.out.println("Database was not found");
-			
-			int length = downs.length;		
-			
-			for(int i = 0; i < length;i++){
-				cArray array = new cArray();
-				array.randomizeArray(false);
-				
-				Display display = new Display(downs[i],array);
-				display.label.setText("No Database was found. Generating Random Expected Points .CSV and Display");
-				
-				Writer cw = new Writer(downs[i], array);
-			}
-		}
-		*/		
+		d3footballDisplay fb = new d3footballDisplay();		
 	}	
 }

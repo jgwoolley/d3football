@@ -10,7 +10,6 @@ import java.util.Random;
 //Make null values able to be entered; array of double + boolean class
 public class cArray{
 	private Random rand;
-	private Random rand2;
 	
 	public static int yardlineSize = Runner.yardlineSize;
 	public static int distanceSize = Runner.distanceSize;
@@ -24,7 +23,7 @@ public class cArray{
 			CalculatorArray[yardline] = new double[distanceSize][];    			    			
 			for(int distance = 0; distance < distanceSize;distance++){
 				CalculatorArray[yardline][distance] = new double[playSize+1];
-				for(int play = 0; play < playSize+1; play++){
+				for(int play = 0; play < playSize; play++){
 					CalculatorArray[yardline][distance][play] = -3;
 				}
 			}
