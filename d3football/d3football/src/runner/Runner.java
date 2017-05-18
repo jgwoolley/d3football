@@ -28,7 +28,7 @@ public class Runner {
 	public static final double EPmax = 7;
 	
 	//each play is assigned a name (string)
-	public static String[] playNames = {"Goal","Rebound","Volley"};	
+	public static String[] playNames = {"Field Goal","Go For It","Punt"};
 	//total number of possible plays, limited by the elements of color.
 	public static final int playSize = playNames.length;
 	//each play is assigned a color

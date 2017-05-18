@@ -22,63 +22,37 @@ public class Calculator {
 	 * given the distance to 1st down and starting yardline
 	 */
 	
-	public static cArray calculation(qArray input) {
+	public static cArray calculation(qArray input, pArray per) {
 		cArray output = new cArray();
-		cArray counter = new cArray();
+		cArray counter = new cArray(0);
 		
-		for(int i = 0; i > input.size(); i++){
+		for(int i = 0; i < input.size(); i++){
 			qPlay play = input.getPlay(i);
 			Double temp = output.getExpectedPoints(play.getYardline(), play.getDistance(), play.getPlay());
-			temp += play.getNextScore();
 			output.setExpectedPoints(play.getYardline(), play.getDistance(), play.getPlay(),play.getNextScore());
-									
-			//temp++;			
-			output.setExpectedPoints(play.getYardline(), play.getDistance(), play.getPlay() + 1, temp);
+			
+			temp = counter.getExpectedPoints(play.getYardline(), play.getDistance(), play.getPlay());
+			temp++;
+			counter.setExpectedPoints(play.getYardline(), play.getDistance(), play.getPlay(), temp);
 
 		}
 		
 		for(int yardline = 0; yardline < yardlineSize;yardline++){
 			for(int distance = 0; distance < distanceSize;distance++){
 				for(int play = 0; play < playSize; play++){
-					output.getExpectedPoints(yardline, distance, play);
+					double temp = output.getExpectedPoints(yardline, distance, play);
+					
+					if(play == 0){//Field Goal
+						temp=temp * per.getPerFG(yardline);
+					}
+					else if(play==1){//Go For It
+						temp=temp * per.getPerGFI(distance);
+					}
+					//Punt has no success rate					
 				}
 			}
 		}
-
-
-		
 		
 		return output;	
 	}
 }		
-		/*
-		int team; //team on offense
-		int sumEP =0; //
-		int numPlays=0;
-		double EP=0;
-		int yard;
-		int nextScore;
-		int scoringTeam;
-		for(int i=0; i<down.length; i++){    // down 4
-			for(int j=0; j<distance.length; j++){ // distance 1-11
-				for(int k=0; k<yardline.length; k++){  // yard line 1-99
-					for((down[i] == 4) && (1<=yardline[k] && yardline[k]<=99)){
-						int newDown = down[i];
-						int newYardline = yardline[k];
-						if((newDown == down[i]) && (newYardline == yardline[k])){
-							//retrieve nextScore & ScoringTeam;
-							if(team == scoringTeam){
-								sumEP += nextScore;
-							}
-							else{
-								sumEP -= nextScore;
-							}
-							numPlays++;
-						}
-					}
-				}
-				EP = sumEP/numPlays);
-			}
-		}
-	   	 return EP;
-	   	 */
