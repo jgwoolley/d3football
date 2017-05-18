@@ -22,7 +22,7 @@ public class cArray{
 		for(int yardline = 0; yardline < yardlineSize;yardline++){
 			CalculatorArray[yardline] = new double[distanceSize][];    			    			
 			for(int distance = 0; distance < distanceSize;distance++){
-				CalculatorArray[yardline][distance] = new double[playSize+1];
+				CalculatorArray[yardline][distance] = new double[playSize];
 				for(int play = 0; play < playSize; play++){
 					CalculatorArray[yardline][distance][play] = -3;
 				}
