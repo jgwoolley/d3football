@@ -1,0 +1,3069 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta name="robots" content="NOINDEX" />
+<link rel="stylesheet" href="/info/boilerplate.css" type="text/css" />
+<!-- rum header -->
+
+<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQ4CWFNbGwIAVFVVBgk="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(12),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(c){try{i("ierr",[c,(new Date).getTime(),!0])}catch(s){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(13),c=t("ee"),s=t("loader"),f=window.onerror,u=!1,d=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(5),t(4),"addEventListener"in window&&t(3),s.xhrWrappable&&t(6),u=!0)}c.on("fn-start",function(t,e,n){u&&(d+=1)}),c.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),c.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),c.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(14)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],4:[function(t,e,n){var r=t("ee").get("raf"),o=t(14)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],5:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(14)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],6:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,v,"fn-",c)}function i(t){y.push(t),h&&(w=-w,b.data=w)}function a(){for(var t=0;t<y.length;t++)r([],y[t]);y.length&&(y=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(3);var f=t("ee"),u=f.get("xhr"),d=t(14)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",v=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],y=[];e.exports=u;var g=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(p,g),g.prototype=p.prototype,d.inPlace(g.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var w=1,b=document.createTextNode(w);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],7:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return h(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(8),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(11),h=t(10),m=window.XMLHttpRequest;a.features.xhr=!0,t(6),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=h(r);i&&(n.txSize=i)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var a=0;a<d;a++)e.addEventListener(u[a],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],8:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],9:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(12),c=t(13),s=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var u=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(u,function(t,e){f[e]=o(d+e,!0,"api")}),f.addPageAction=o(d+"addPageAction",!0),f.setCurrentRouteName=o(d+"routeName",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var p=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{s.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){p[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],10:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],11:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],12:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],13:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],14:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(13),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){l([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o)}catch(a){l([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){l([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function l(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o){if(!l.aborted){t&&t(n,r,o);for(var i=e(o),a=h(n),c=a.length,s=0;s<c;s++)a[s].apply(i,r);var f=u[g[n]];return f&&f.push([w,n,r,i]),i}}function p(t,e){y[t]=h(t).concat(e)}function h(t){return y[t]||[]}function m(t){return d[t]=d[t]||o(n)}function v(t,e){f(t,function(t,n){e=e||"feature",g[n]=e,e in u||(u[e]=[])})}var y={},g={},w={on:p,emit:n,get:m,listeners:h,context:e,buffer:v,abort:a,aborted:!1};return w}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var c="nr@context",s=t("gos"),f=t(12),u={},d={},l=e.exports=o();l.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!b++){var t=w.info=NREUM.info,e=d.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();s(y,function(e,n){t[e]||(t[e]=n)}),c("mark",["onload",a()],null,"api");var n=d.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var c=t("handle"),s=t(12),f=t("ee"),u=window,d=u.document,l="addEventListener",p="attachEvent",h=u.XMLHttpRequest,m=h&&h.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:h,REQ:u.Request,EV:u.Event,PR:u.Promise,MO:u.MutationObserver},t(9);var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1016.min.js"},g=h&&m&&m[l]&&!/CriOS/.test(navigator.userAgent),w=e.exports={offset:a(),origin:v,features:{},xhrWrappable:g};d[l]?(d[l]("DOMContentLoaded",i,!1),u[l]("load",r,!1)):(d[p]("onreadystatechange",o),u[p]("onload",r)),c("mark",["firstbyte",a()],null,"api");var b=0},{}]},{},["loader",2,7]);</script>
+
+</head>
+<body onload="print()" class="printer-body">
+<div class="align-center">
+    <div>North Park vs. Augustana</div>
+    <div>October 22, 2011, 1:03 PM</div>
+    <div>at Rock Island, IL | Ericson Field</div>
+    <div></div>
+</div>
+
+<div class="stats-wrapper clearfix">
+
+
+<table>
+  <tr>
+         <td width="50%" align="center">
+          <span class="stats-header">North Park</span>
+          <br /><span class="stats-header">24</span>
+     </td>
+         <td width="50%" align="center">
+          <span class="stats-header">Augustana</span>
+          <br /><span class="stats-header">27</span>
+     </td>
+      </tr>
+</table>
+
+<div class="stats-fullbox clearfix">
+<table>
+ <tr>
+  <th class="align-left">Scoring</th>
+      <th style="width:40px; text-align:center;">                                        1
+                        </th>
+      <th style="width:40px; text-align:center;">                                        2
+                        </th>
+      <th style="width:40px; text-align:center;">                                        3
+                        </th>
+      <th style="width:40px; text-align:center;">                                        4
+                        </th>
+    
+      <th style="width:60px">Final</th>
+   </tr>
+
+
+ <tr>
+  <td>
+      North Park
+                (3-4, 0-4)
+        </td>
+    <td class="align-center">0</td>
+    <td class="align-center">14</td>
+    <td class="align-center">3</td>
+    <td class="align-center">7</td>
+    <td class="align-center">24</td>
+ </tr>
+ <tr>
+  <td>
+      Augustana
+                (2-5, 2-2)
+        </td>
+    <td class="align-center">0</td>
+    <td class="align-center">14</td>
+    <td class="align-center">6</td>
+    <td class="align-center">7</td>
+    <td class="align-center">27</td>
+ </tr>
+
+</table>
+</div>
+
+
+    <div class="stats-tabs clearfix">
+        <ul class="clearfix">
+          <li ><a href="/seasons/2011/boxscores/20111022_ac8p.xml" data-view="boxscore">Box Score</a>
+          <li  class="active" ><a href="/seasons/2011/boxscores/20111022_ac8p.xml?view=plays" data-view="plays" id="pbp">Play by Play</a></li>          <li ><a href="/seasons/2011/boxscores/20111022_ac8p.xml?view=drives" data-view="drives">Drive Summary</a></li>                    <li ><a href="/seasons/2011/boxscores/20111022_ac8p.xml?view=participation" data-view="participation">Participation</a></li>
+          <li><a href="/seasons/2011/boxscores/20111022_ac8p.xml?tmpl=fbxml-monospace-template" target="_blank">Coach's View</a></li>
+        </ul>
+    </div>
+
+
+
+
+
+
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+
+
+
+                <div class="stats-fullbox clearfix">
+        <table>
+                                    <tr>
+                <td colspan="2">
+                    <strong>Quarters: </strong>
+                                                                    <a href="#qtr1">      1st
+      </a>
+                                             |                         <a href="#qtr2">      2nd
+      </a>
+                                             |                         <a href="#qtr3">      3rd
+      </a>
+                                             |                         <a href="#qtr4">       4th 
+      </a>
+                                    </td>
+            </tr>
+                                                                 <tr><td colspan="2" id="qtr1" class="align-center summary"><div class="stats-header">      1st
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU30</td>
+                            
+                            <td>AUGIE ball on AUGIE30.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Rogers, Brady kickoff 65 yards to the NPU5, Chvatal, Jake return 18 yards to the NPU23 (Ollenburger, Gr).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">North Park at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU23</td>
+                            
+                            <td>Chvatal, Jake rush for 6 yards to the NPU29 (Hall, Ben).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at NPU29</td>
+                            
+                            <td>Hassan, Matt rush for 3 yards to the NPU32 (Weber, Joe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at NPU32</td>
+                            
+                            <td>Barnabee, John rush for loss of 1 yard to the NPU31 (Mago, Robert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 2 at NPU31</td>
+                            
+                            <td>Howard, Mark punt 39 yards to the AUGIE30, Hoger, A.J. return 10 yards to the AUGIE40, PENALTY AUGIE holding 10 yards to the AUGIE30, 1st and 10, AUGIE ball on AUGIE30.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">3 plays, 8 yards, 2:12 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 12:48</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE30</td>
+                            
+                            <td>AUGUSTANA drive start at 12:48.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE30</td>
+                            
+                            <td>Owens, Antonio rush for 7 yards to the AUGIE37 (Ivy, Douglas).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at AUGIE37</td>
+                            
+                            <td>PENALTY AUGIE false start 5 yards to the AUGIE32.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at AUGIE32</td>
+                            
+                            <td>Owens, Antonio rush for 40 yards to the NPU28, 1ST DOWN AUGIE (Sawyer, Willie).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU28</td>
+                            
+                            <td>Owens, Antonio rush for loss of 4 yards to the NPU32, fumble forced by Dennis, Canmu, fumble by Owens, Antonio recovered by NPU Dennis, Canmu at NPU32.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 38 yards, 1:12 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">North Park at 11:36</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU32</td>
+                            
+                            <td>NORTH PARK drive start at 11:36.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU32</td>
+                            
+                            <td>Krebs, Tyler rush for 2 yards to the NPU34 (Weber, Joe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at NPU34</td>
+                            
+                            <td>Hassan, Matt rush for no gain to the NPU34 (Weber, Joe;Anderson, Luke).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at NPU34</td>
+                            
+                            <td>Krebs, Tyler rush for 13 yards to the NPU47, 1ST DOWN NPU (Hess, Danny).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU47</td>
+                            
+                            <td>Hassan, Matt rush for 9 yards to the AUGIE44 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 1 at AUGIE44</td>
+                            
+                            <td>Barnabee, John rush for 11 yards to the AUGIE33, 1ST DOWN NPU (O'Shea, Tim).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE33</td>
+                            
+                            <td>Hassan, Matt rush for 2 yards to the AUGIE31 (Wickenhauser, C).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at AUGIE31</td>
+                            
+                            <td>Krebs, Tyler rush for 2 yards to the AUGIE29 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at AUGIE29</td>
+                            
+                            <td>Hassan, Matt rush for 7 yards to the AUGIE22, 1ST DOWN NPU (Hess, Danny).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE22</td>
+                            
+                            <td>Krebs, Tyler rush for loss of 2 yards to the AUGIE24.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 12 at AUGIE24</td>
+                            
+                            <td>Hassan, Matt rush for 4 yards to the AUGIE20 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at AUGIE20</td>
+                            
+                            <td>Hassan, Matt rush for no gain to the AUGIE20 (Anderson, Luke).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 8 at AUGIE20</td>
+                            
+                            <td>Kebede, Tony field goal attempt from 37 MISSED - wide right, spot at AUGIE20, clock 04:46.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">12 plays, 48 yards, 6:50 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 04:46</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE20</td>
+                            
+                            <td>AUGUSTANA drive start at 04:46.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE20</td>
+                            
+                            <td>Lee, David pass incomplete to Owens, Antonio, dropped pass.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at AUGIE20</td>
+                            
+                            <td>McWilliams, Bre rush for 5 yards to the AUGIE25, out-of-bounds (Saltzman, A.).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at AUGIE25</td>
+                            
+                            <td>Lee, David pass complete to Hoger, A.J. for 6 yards to the AUGIE31, 1ST DOWN AUGIE, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE31</td>
+                            
+                            <td>Lee, David pass complete to Wagner, Jason for 3 yards to the AUGIE34, out-of-bounds (Sawyer, Willie).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at AUGIE34</td>
+                            
+                            <td>Lee, David rush for 6 yards to the AUGIE40 (Saltzman, A.).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at AUGIE40</td>
+                            
+                            <td>Chandler, Eric rush for 5 yards to the AUGIE45, 1ST DOWN AUGIE (Porter, Cicero).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE45</td>
+                            
+                            <td>Owens, Antonio rush for 8 yards to the NPU47 (Saltzman, A.).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at NPU47</td>
+                            
+                            <td>Lee, David pass complete to Resner, Marty for 26 yards to the NPU21, 1ST DOWN AUGIE, out-of-bounds (Saltzman, A.).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU21</td>
+                            
+                            <td>Chandler, Eric rush for 6 yards to the NPU15 (Drain, Greg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at NPU15</td>
+                            
+                            <td>Chandler, Eric rush for 4 yards to the NPU11, 1ST DOWN AUGIE (Dennis, Canmu).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>North Park 0, Augustana 0</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr2" class="align-center summary"><div class="stats-header">      2nd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU11</td>
+                            
+                            <td>Start of 2nd quarter, clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU11</td>
+                            
+                            <td>Lee, David pass complete to Krantz, Nick for 6 yards to the NPU5 (Meyers, T.).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at NPU05</td>
+                            
+                            <td>Chandler, Eric rush for 5 yards to the NPU0, 1ST DOWN AUGIE, TOUCHDOWN, clock 14:13.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Rogers, Brady kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>North Park 0, Augustana 7</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">12 plays, 80 yards, 5:33 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Rogers, Brady kickoff 47 yards to the NPU23, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">North Park at 14:11</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU23</td>
+                            
+                            <td>NORTH PARK drive start at 14:11.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU23</td>
+                            
+                            <td>PENALTY AUGIE personal foul 15 yards to the NPU38, 1ST DOWN NPU.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU38</td>
+                            
+                            <td>Kick, Andrew rush for 3 yards to the NPU41 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at NPU41</td>
+                            
+                            <td>Chvatal, Jake rush for 12 yards to the AUGIE47, 1ST DOWN NPU, out-of-bounds (Goshorn, Bo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE47</td>
+                            
+                            <td>Kick, Andrew rush for 3 yards to the AUGIE44 (Hartweg, Carl).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at AUGIE44</td>
+                            
+                            <td>Kick, Andrew rush for 4 yards to the AUGIE40 (Hess, Danny;Anderson, Luke).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 3 at AUGIE40</td>
+                            
+                            <td>Krebs, Tyler rush for 15 yards to the AUGIE25, 1ST DOWN NPU (Holl, Shane).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE25</td>
+                            
+                            <td>Chvatal, Jake rush for 4 yards to the AUGIE21 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at AUGIE21</td>
+                            
+                            <td>Krebs, Tyler rush for 1 yard to the AUGIE20 (Hess, Danny).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at AUGIE20</td>
+                            
+                            <td>PENALTY AUGIE offside 5 yards to the AUGIE15, 1ST DOWN NPU.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE15</td>
+                            
+                            <td>PENALTY AUGIE offside 5 yards to the AUGIE10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 5 at AUGIE10</td>
+                            
+                            <td>Hassan, Matt rush for 2 yards to the AUGIE8 (Matthiesen, Mik).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at AUGIE08</td>
+                            
+                            <td>Krebs, Tyler rush for 2 yards to the AUGIE6 (Mago, Robert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at AUGIE06</td>
+                            
+                            <td>Hassan, Matt rush for 3 yards to the AUGIE3, 1ST DOWN NPU (Holl, Shane).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at AUGIE03</td>
+                            
+                            <td>Hassan, Matt rush for 2 yards to the AUGIE1 (Matthiesen, Mik).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at AUGIE01</td>
+                            
+                            <td>Hassan, Matt rush for no gain to the AUGIE1 (Holl, Shane).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at AUGIE01</td>
+                            
+                            <td>Chvatal, Jake rush for 1 yard to the AUGIE0, TOUCHDOWN, clock 06:27.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Kebede, Tony kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>North Park 7, Augustana 7</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">13 plays, 77 yards, 7:44 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Nottoli, Bryn kickoff 46 yards to the AUGIE24, Owens, Antonio return 15 yards to the AUGIE39 (Leibforth, Kyle).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 06:20</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE39</td>
+                            
+                            <td>AUGUSTANA drive start at 06:20.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE39</td>
+                            
+                            <td>Hoger, A.J. rush for 38 yards to the NPU23, 1ST DOWN AUGIE (Sawyer, Willie).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU23</td>
+                            
+                            <td>Lee, David rush for loss of 3 yards to the NPU26.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 13 at NPU26</td>
+                            
+                            <td>Chandler, Eric rush for 4 yards to the NPU22 (Saltzman, A.).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 9 at NPU22</td>
+                            
+                            <td>McWilliams, Bre rush for 6 yards to the NPU16 (Flihan, Fred).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 3 at NPU16</td>
+                            
+                            <td>Timeout Augustana, clock 04:06.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 3 at NPU16</td>
+                            
+                            <td>Timeout North Park, clock 04:06.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 3 at NPU16</td>
+                            
+                            <td>Rogers, Brady rush for 9 yards to the NPU7, 1ST DOWN AUGIE, out-of-bounds (Smagala, Casey).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at NPU07</td>
+                            
+                            <td>Timeout Augustana, clock 03:36.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at NPU07</td>
+                            
+                            <td>McWilliams, Bre rush for no gain to the NPU7 (Flihan, Fred).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at NPU07</td>
+                            
+                            <td>Lee, David rush for 7 yards to the NPU0, TOUCHDOWN, clock 02:49.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Rogers, Brady kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>North Park 7, Augustana 14</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">7 plays, 61 yards, 3:31 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Rogers, Brady kickoff 55 yards to the NPU15, Cochiaro, Sam return 9 yards to the NPU24 (Walker, Sean;Benner, Jacob).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">North Park at 02:44</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU24</td>
+                            
+                            <td>NORTH PARK drive start at 02:44.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU24</td>
+                            
+                            <td>Chvatal, Jake rush for 6 yards to the NPU30 (Anderson, Luke).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at NPU30</td>
+                            
+                            <td>Krebs, Tyler rush for 6 yards to the NPU36, 1ST DOWN NPU (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU36</td>
+                            
+                            <td>Krebs, Tyler rush for 4 yards to the NPU40 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at NPU40</td>
+                            
+                            <td>Krebs, Tyler pass incomplete to Cochiaro, Sam.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at NPU40</td>
+                            
+                            <td>Cochiaro, Sam rush for 11 yards to the AUGIE49, 1ST DOWN NPU, out-of-bounds (Hall, Ben).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE49</td>
+                            
+                            <td>Krebs, Tyler pass incomplete to Hampton, D..</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at AUGIE49</td>
+                            
+                            <td>Hassan, Matt rush for 9 yards to the AUGIE40 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at AUGIE40</td>
+                            
+                            <td>Timeout North Park, clock 00:54.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at AUGIE40</td>
+                            
+                            <td>Hassan, Matt rush for 3 yards to the AUGIE37, 1ST DOWN NPU (Westerberg, Eri;Hall, Ben).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE37</td>
+                            
+                            <td>Krebs, Tyler pass complete to Hampton, D. for 37 yards to the AUGIE0, 1ST DOWN NPU, TOUCHDOWN, clock 00:32.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Kebede, Tony kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>North Park 14, Augustana 14</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">9 plays, 76 yards, 2:12 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Nottoli, Bryn kickoff 48 yards to the AUGIE22, Owens, Antonio return 0 yards to the AUGIE22.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 00:29</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE22</td>
+                            
+                            <td>AUGUSTANA drive start at 00:29.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE22</td>
+                            
+                            <td>McWilliams, Bre rush for 3 yards to the AUGIE25 (Smith, Thomas).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at AUGIE25</td>
+                            
+                            <td>End of half, clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">1 plays, 3 yards, 0:29 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr3" class="align-center summary"><div class="stats-header">      3rd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at AUGIE25</td>
+                            
+                            <td>Start of 3rd quarter, clock 15:00, NPU ball on NPU30.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Nottoli, Bryn kickoff 65 yards to the AUGIE5, Walker, Sean return 5 yards to the AUGIE10 (Lawler, Nathan).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 14:54</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE10</td>
+                            
+                            <td>AUGUSTANA drive start at 14:54.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE10</td>
+                            
+                            <td>McCullough, Zac rush for no gain to the AUGIE10 (Sawyer, Willie).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at AUGIE10</td>
+                            
+                            <td>McWilliams, Bre rush for 2 yards to the AUGIE12 (Dennis, Canmu).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at AUGIE12</td>
+                            
+                            <td>Lee, David pass complete to Hoger, A.J. for 4 yards to the AUGIE16 (Meyers, T.).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 4 at AUGIE16</td>
+                            
+                            <td>Fitzwater, Arni punt 33 yards to the AUGIE49, fair catch by Sawyer, Willie.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 6 yards, 2:08 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">North Park at 12:46</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE49</td>
+                            
+                            <td>NORTH PARK drive start at 12:46.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE49</td>
+                            
+                            <td>Krebs, Tyler rush for 1 yard to the AUGIE48 (Mago, Robert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at AUGIE48</td>
+                            
+                            <td>Hassan, Matt rush for 5 yards to the AUGIE43 (Hall, Ben).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at AUGIE43</td>
+                            
+                            <td>Hassan, Matt rush for 3 yards to the AUGIE40 (Anderson, Luke).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 1 at AUGIE40</td>
+                            
+                            <td>Krebs, Tyler rush for 3 yards to the AUGIE37, 1ST DOWN NPU (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE37</td>
+                            
+                            <td>Hassan, Matt rush for 3 yards to the AUGIE34 (Wickenhauser, C).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at AUGIE34</td>
+                            
+                            <td>Hassan, Matt rush for 6 yards to the AUGIE28 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at AUGIE28</td>
+                            
+                            <td>Timeout North Park, clock 08:55.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at AUGIE28</td>
+                            
+                            <td>Hassan, Matt rush for 4 yards to the AUGIE24, 1ST DOWN NPU (Wickenhauser, C).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE24</td>
+                            
+                            <td>Krebs, Tyler rush for 7 yards to the AUGIE17 (Hall, Ben).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at AUGIE17</td>
+                            
+                            <td>Krebs, Tyler pass incomplete to Cochiaro, Sam (Walker, Sean).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 3 at AUGIE17</td>
+                            
+                            <td>Krebs, Tyler rush for 4 yards to the AUGIE13, 1ST DOWN NPU (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE13</td>
+                            
+                            <td>Chvatal, Jake rush for 3 yards to the AUGIE10 (Mago, Robert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at AUGIE10</td>
+                            
+                            <td>Chvatal, Jake rush for 1 yard to the AUGIE9 (Anderson, Luke).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at AUGIE09</td>
+                            
+                            <td>Hassan, Matt rush for 2 yards to the AUGIE7 (Weber, Joe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 4 at AUGIE07</td>
+                            
+                            <td>Kebede, Tony field goal attempt from 24 GOOD, clock 04:56.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>North Park 17, Augustana 14</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">14 plays, 42 yards, 7:50 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Nottoli, Bryn kickoff 52 yards to the AUGIE18, Krantz, Nick return 15 yards to the AUGIE33 (Reed, William).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 04:46</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE33</td>
+                            
+                            <td>AUGUSTANA drive start at 04:46.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE33</td>
+                            
+                            <td>Lee, David pass complete to Gilleland, Jack for 2 yards to the AUGIE35 (Leibforth, Kyle).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at AUGIE35</td>
+                            
+                            <td>Krantz, Nick rush for 4 yards to the AUGIE39 (Saltzman, A.).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at AUGIE39</td>
+                            
+                            <td>Lee, David pass complete to Abbey, Keith for 61 yards to the NPU0, 1ST DOWN AUGIE, TOUCHDOWN, clock 03:15.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Rogers, Brady kick attempt failed.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>North Park 17, Augustana 20</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 67 yards, 1:31 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Rogers, Brady kickoff 60 yards to the NPU10, Cochiaro, Sam return 20 yards to the NPU30 (Benner, Jacob).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">North Park at 03:07</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU30</td>
+                            
+                            <td>NORTH PARK drive start at 03:07.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU30</td>
+                            
+                            <td>Krebs, Tyler rush for no gain to the NPU30 (Mago, Robert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at NPU30</td>
+                            
+                            <td>Krebs, Tyler rush for 2 yards to the NPU32 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at NPU32</td>
+                            
+                            <td>Cochiaro, Sam rush for 6 yards to the NPU38 (Walker, Sean).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 2 at NPU38</td>
+                            
+                            <td>PENALTY AUGIE roughing the kicker 15 yards to the AUGIE47, 1ST DOWN NPU.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE47</td>
+                            
+                            <td>Krebs, Tyler rush for no gain to the AUGIE47 (Anderson, Luke).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at AUGIE47</td>
+                            
+                            <td>Hassan, Matt rush for 4 yards to the AUGIE43 (Holl, Shane).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr4" class="align-center summary"><div class="stats-header">       4th 
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at AUGIE43</td>
+                            
+                            <td>Start of 4th quarter, clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at AUGIE43</td>
+                            
+                            <td>Barnabee, John rush for 3 yards to the AUGIE40 (Holl, Shane).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 3 at AUGIE40</td>
+                            
+                            <td>Howard, Mark punt 20 yards to the AUGIE20, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">6 plays, 30 yards, 3:56 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 14:11</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE20</td>
+                            
+                            <td>AUGUSTANA drive start at 14:11.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE20</td>
+                            
+                            <td>Lee, David pass complete to Krantz, Nick for 80 yards to the NPU0, 1ST DOWN AUGIE, TOUCHDOWN, clock 14:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Rogers, Brady kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>North Park 17, Augustana 27</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">1 plays, 80 yards, 0:11 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Rogers, Brady kickoff 62 yards to the NPU8, Cochiaro, Sam return 16 yards to the NPU24 (Gray, Mack), PENALTY AUGIE personal foul 15 yards to the NPU39, 1st and 10, NPU ball on NPU39.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">North Park at 13:52</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU39</td>
+                            
+                            <td>NORTH PARK drive start at 13:52.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU39</td>
+                            
+                            <td>Chvatal, Jake rush for 3 yards to the NPU42 (Hall, Ben).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at NPU42</td>
+                            
+                            <td>Kick, Andrew rush for 4 yards to the NPU46 (Westerberg, Eri).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 3 at NPU46</td>
+                            
+                            <td>Krebs, Tyler rush for 11 yards to the AUGIE43, 1ST DOWN NPU (Goshorn, Bo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE43</td>
+                            
+                            <td>Krebs, Tyler pass intercepted by Walker, Sean at the AUGIE13, Walker, Sean return 13 yards to the AUGIE26 (Steffen, Ian).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">4 plays, 18 yards, 2:10 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 11:42</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE26</td>
+                            
+                            <td>AUGUSTANA drive start at 11:42.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE26</td>
+                            
+                            <td>Pena, Nate rush for 4 yards to the AUGIE30 (Mullen, Chris).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at AUGIE30</td>
+                            
+                            <td>Pena, Nate rush for loss of 4 yards to the AUGIE26 (Leibforth, Kyle).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 10 at AUGIE26</td>
+                            
+                            <td>Lee, David pass complete to Krantz, Nick for 10 yards to the AUGIE36, 1ST DOWN AUGIE (Saltzman, A.).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE36</td>
+                            
+                            <td>Hoger, A.J. rush for 3 yards to the AUGIE39, out-of-bounds (Flihan, Fred).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at AUGIE39</td>
+                            
+                            <td>Lee, David pass incomplete to McCullough, Zac.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at AUGIE39</td>
+                            
+                            <td>Lee, David pass complete to Pena, Nate for 1 yard to the AUGIE40 (Guevara, Jose).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at AUGIE40</td>
+                            
+                            <td>Fitzwater, Arni punt 44 yards to the NPU16, Sawyer, Willie return 7 yards to the NPU23 (Draminski, John).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">6 plays, 14 yards, 3:12 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">North Park at 08:30</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU23</td>
+                            
+                            <td>NORTH PARK drive start at 08:30.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU23</td>
+                            
+                            <td>Hassan, Matt rush for 4 yards to the NPU27 (Anderson, Luke).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at NPU27</td>
+                            
+                            <td>Hassan, Matt rush for 2 yards to the NPU29 (Voda, Kyle).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at NPU29</td>
+                            
+                            <td>Hassan, Matt rush for 2 yards to the NPU31 (Holl, Shane).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 2 at NPU31</td>
+                            
+                            <td>Timeout North Park, clock 06:38.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 2 at NPU31</td>
+                            
+                            <td>Howard, Mark punt 36 yards to the AUGIE33, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">3 plays, 8 yards, 2:03 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 06:27</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE33</td>
+                            
+                            <td>AUGUSTANA drive start at 06:27.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE33</td>
+                            
+                            <td>Hoger, A.J. rush for loss of 2 yards to the AUGIE31, PENALTY AUGIE tripping 15 yards to the AUGIE16.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 27 at AUGIE16</td>
+                            
+                            <td>1st and 27.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 27 at AUGIE16</td>
+                            
+                            <td>Lee, David rush for 8 yards to the AUGIE24 (Drain, Greg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 19 at AUGIE24</td>
+                            
+                            <td>Hoger, A.J. rush for 10 yards to the AUGIE34, out-of-bounds (Drain, Greg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 9 at AUGIE34</td>
+                            
+                            <td>Lee, David pass incomplete to McCullough, Zac.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 9 at AUGIE34</td>
+                            
+                            <td>Fitzwater, Arni punt 38 yards to the NPU28, Sawyer, Willie return 0 yards to the NPU28 (Walker, Sean).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">4 plays, 1 yards, 1:44 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">North Park at 04:43</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU28</td>
+                            
+                            <td>NORTH PARK drive start at 04:43.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU28</td>
+                            
+                            <td>Hassan, Matt rush for 8 yards to the NPU36 (Wickenhauser, C).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at NPU36</td>
+                            
+                            <td>Krebs, Tyler pass incomplete to Chvatal, Jake.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 2 at NPU36</td>
+                            
+                            <td>Hassan, Matt rush for 4 yards to the NPU40, 1ST DOWN NPU (Hess, Danny).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU40</td>
+                            
+                            <td>Krebs, Tyler pass complete to Weinstein, Nick for 10 yards to the 50 yardline, 1ST DOWN NPU (Goshorn, Bo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU50</td>
+                            
+                            <td>Hassan, Matt rush for 19 yards to the AUGIE31, 1ST DOWN NPU (Mago, Robert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE31</td>
+                            
+                            <td>Krebs, Tyler rush for 20 yards to the AUGIE11, 1ST DOWN NPU (Gray, Mack).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at AUGIE11</td>
+                            
+                            <td>Barnabee, John rush for 2 yards to the AUGIE9 (Holl, Shane).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at AUGIE09</td>
+                            
+                            <td>Chvatal, Jake rush for 1 yard to the AUGIE8 (Mago, Robert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at AUGIE08</td>
+                            
+                            <td>Timeout North Park, clock 01:32.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at AUGIE08</td>
+                            
+                            <td>Cochiaro, Sam pass complete to Hampton, D. for 8 yards to the AUGIE0, 1ST DOWN NPU, TOUCHDOWN, clock 01:21.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Kebede, Tony kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>North Park 24, Augustana 27</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">9 plays, 72 yards, 3:22 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Nottoli, Bryn kickoff 19 yards to the NPU49, McCullough, Zac return 0 yards to the NPU49.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Augustana at 01:20</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU49</td>
+                            
+                            <td>AUGUSTANA drive start at 01:20.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at NPU49</td>
+                            
+                            <td>TEAM rush for loss of 1 yard to the 50 yardline.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at AUGIE50</td>
+                            
+                            <td>TEAM rush for loss of 1 yard to the AUGIE49.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 12 at AUGIE49</td>
+                            
+                            <td>End of game, clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">2 plays, -2 yards, 1:20 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                     </table>
+    </div>
+ 
+
+     
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        if (!$('.stats-tabs li.active').length) {
+            if (history.replaceState) {
+                history.replaceState({}, '', '?view=' + $('.stats-tabs li:first').addClass('active').children('a').data('view'));
+            } else {
+                $('.stats-tabs li:first').addClass('active');
+            }
+        }
+    })
+</script>
+
+<!-- from: generic theme -->
+
+<!-- rum footer -->
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"applicationID":"1004718","applicationTime":100,"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"a8324e80d1","transactionName":"MgcAZENYXhJYVkFdXQtNJFldTVUTFnFaWVMMDEJeUFRVQV9cWUBXFw==","agent":"","errorBeacon":"bam.nr-data.net"}</script>
+
+
+</body>
+</html>

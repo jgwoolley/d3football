@@ -1,0 +1,3581 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta name="robots" content="NOINDEX" />
+<link rel="stylesheet" href="/info/boilerplate.css" type="text/css" />
+<!-- rum header -->
+
+<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQ4CWFNbGwIAVFVVBgk="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(12),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(c){try{i("ierr",[c,(new Date).getTime(),!0])}catch(s){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(13),c=t("ee"),s=t("loader"),f=window.onerror,u=!1,d=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(5),t(4),"addEventListener"in window&&t(3),s.xhrWrappable&&t(6),u=!0)}c.on("fn-start",function(t,e,n){u&&(d+=1)}),c.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),c.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),c.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(14)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],4:[function(t,e,n){var r=t("ee").get("raf"),o=t(14)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],5:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(14)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],6:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,v,"fn-",c)}function i(t){y.push(t),h&&(w=-w,b.data=w)}function a(){for(var t=0;t<y.length;t++)r([],y[t]);y.length&&(y=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(3);var f=t("ee"),u=f.get("xhr"),d=t(14)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",v=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],y=[];e.exports=u;var g=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(p,g),g.prototype=p.prototype,d.inPlace(g.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var w=1,b=document.createTextNode(w);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],7:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return h(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(8),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(11),h=t(10),m=window.XMLHttpRequest;a.features.xhr=!0,t(6),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=h(r);i&&(n.txSize=i)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var a=0;a<d;a++)e.addEventListener(u[a],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],8:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],9:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(12),c=t(13),s=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var u=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(u,function(t,e){f[e]=o(d+e,!0,"api")}),f.addPageAction=o(d+"addPageAction",!0),f.setCurrentRouteName=o(d+"routeName",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var p=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{s.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){p[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],10:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],11:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],12:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],13:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],14:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(13),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){l([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o)}catch(a){l([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){l([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function l(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o){if(!l.aborted){t&&t(n,r,o);for(var i=e(o),a=h(n),c=a.length,s=0;s<c;s++)a[s].apply(i,r);var f=u[g[n]];return f&&f.push([w,n,r,i]),i}}function p(t,e){y[t]=h(t).concat(e)}function h(t){return y[t]||[]}function m(t){return d[t]=d[t]||o(n)}function v(t,e){f(t,function(t,n){e=e||"feature",g[n]=e,e in u||(u[e]=[])})}var y={},g={},w={on:p,emit:n,get:m,listeners:h,context:e,buffer:v,abort:a,aborted:!1};return w}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var c="nr@context",s=t("gos"),f=t(12),u={},d={},l=e.exports=o();l.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!b++){var t=w.info=NREUM.info,e=d.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();s(y,function(e,n){t[e]||(t[e]=n)}),c("mark",["onload",a()],null,"api");var n=d.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var c=t("handle"),s=t(12),f=t("ee"),u=window,d=u.document,l="addEventListener",p="attachEvent",h=u.XMLHttpRequest,m=h&&h.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:h,REQ:u.Request,EV:u.Event,PR:u.Promise,MO:u.MutationObserver},t(9);var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1016.min.js"},g=h&&m&&m[l]&&!/CriOS/.test(navigator.userAgent),w=e.exports={offset:a(),origin:v,features:{},xhrWrappable:g};d[l]?(d[l]("DOMContentLoaded",i,!1),u[l]("load",r,!1)):(d[p]("onreadystatechange",o),u[p]("onload",r)),c("mark",["firstbyte",a()],null,"api");var b=0},{}]},{},["loader",2,7]);</script>
+
+</head>
+<body onload="print()" class="printer-body">
+<div class="align-center">
+    <div>Misericordia vs. Lebanon Valley</div>
+    <div>September 8, 2012, 1 pm</div>
+    <div>at Annville, Pa. | Arnold Field</div>
+    <div></div>
+</div>
+
+<div class="stats-wrapper clearfix">
+
+
+<table>
+  <tr>
+         <td width="50%" align="center">
+          <span class="stats-header">Misericordia</span>
+          <br /><span class="stats-header">7</span>
+     </td>
+         <td width="50%" align="center">
+          <span class="stats-header">Lebanon Valley</span>
+          <br /><span class="stats-header">47</span>
+     </td>
+      </tr>
+</table>
+
+<div class="stats-fullbox clearfix">
+<table>
+ <tr>
+  <th class="align-left">Scoring</th>
+      <th style="width:40px; text-align:center;">                                        1
+                        </th>
+      <th style="width:40px; text-align:center;">                                        2
+                        </th>
+      <th style="width:40px; text-align:center;">                                        3
+                        </th>
+      <th style="width:40px; text-align:center;">                                        4
+                        </th>
+    
+      <th style="width:60px">Final</th>
+   </tr>
+
+
+ <tr>
+  <td>
+      Misericordia
+                (0-2)
+        </td>
+    <td class="align-center">0</td>
+    <td class="align-center">0</td>
+    <td class="align-center">7</td>
+    <td class="align-center">0</td>
+    <td class="align-center">7</td>
+ </tr>
+ <tr>
+  <td>
+      Lebanon Valley
+                (2-0)
+        </td>
+    <td class="align-center">7</td>
+    <td class="align-center">20</td>
+    <td class="align-center">13</td>
+    <td class="align-center">7</td>
+    <td class="align-center">47</td>
+ </tr>
+
+</table>
+</div>
+
+
+    <div class="stats-tabs clearfix">
+        <ul class="clearfix">
+          <li ><a href="/seasons/2012/boxscores/20120908_0rt7.xml" data-view="boxscore">Box Score</a>
+          <li  class="active" ><a href="/seasons/2012/boxscores/20120908_0rt7.xml?view=plays" data-view="plays" id="pbp">Play by Play</a></li>          <li ><a href="/seasons/2012/boxscores/20120908_0rt7.xml?view=drives" data-view="drives">Drive Summary</a></li>          <li ><a href="/seasons/2012/boxscores/20120908_0rt7.xml?view=starters" data-view="starters">Starters</a></li>          <li ><a href="/seasons/2012/boxscores/20120908_0rt7.xml?view=participation" data-view="participation">Participation</a></li>
+          <li><a href="/seasons/2012/boxscores/20120908_0rt7.xml?tmpl=fbxml-monospace-template" target="_blank">Coach's View</a></li>
+        </ul>
+    </div>
+
+
+
+
+
+
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+
+
+
+                <div class="stats-fullbox clearfix">
+        <table>
+                                    <tr>
+                <td colspan="2">
+                    <strong>Quarters: </strong>
+                                                                    <a href="#qtr1">      1st
+      </a>
+                                             |                         <a href="#qtr2">      2nd
+      </a>
+                                             |                         <a href="#qtr3">      3rd
+      </a>
+                                             |                         <a href="#qtr4">       4th 
+      </a>
+                                    </td>
+            </tr>
+                                                                 <tr><td colspan="2" id="qtr1" class="align-center summary"><div class="stats-header">      1st
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB30</td>
+                            
+                            <td>LVC wins the toss, receives; MU defends south.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>S Clemson kickoff 56 yards to the LVC14, Matt Richmond return 37 yards to the MIFB49, (S Clemson; T Martin).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB49</td>
+                            
+                            <td>Pete Panichi rush for 3 yards to the MIFB46, (P Conforti).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at MIFB46</td>
+                            
+                            <td>Pete Panichi rush for 9 yards to the MIFB371ST DOWN LVC, (P Arnold).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB37</td>
+                            
+                            <td>Conrad Heisey rush for 0 yard to the MIFB37, (M Comerford).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at MIFB37</td>
+                            
+                            <td>Leo Kyte pass complete  to Jake Zeigler for 24 yards to the MIFB131ST DOWN LVC, (A Scaffido).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB13</td>
+                            
+                            <td>Pete Panichi rush for 3 yards to the MIFB10, (H Pates).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at MIFB10</td>
+                            
+                            <td>Pete Panichi rush for 3 yards to the MIFB07, (G Zotian; D Picarillo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at MIFB07</td>
+                            
+                            <td>Leo Kyte intercepted by J Petties-Jacks for 7 yards at the MIFB001ST DOWN LVC, J Petties-Jacks return loss of 7 yard to the MIFB00, (Yahya McIntyre), .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">21 plays, 0 yards, 2:48 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB20</td>
+                            
+                            <td>J Puckett pass incomplete  to P Brace.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at MIFB20</td>
+                            
+                            <td>C Lamoreaux rush for 2 yards to the MIFB22, (A. Burkholder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at MIFB22</td>
+                            
+                            <td>J Puckett pass incomplete  to P Brace, (A. Burkholder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 8 at MIFB22</td>
+                            
+                            <td>C Wall punt 63 yards to the LVC15, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC15</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 12:12</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC15</td>
+                            
+                            <td>Pete Panichi rush for 8 yards to the LVC23, (A Scaffido).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at LVC23</td>
+                            
+                            <td>Leo Kyte pass complete  to Joey Miller for 8 yards to the LVC311ST DOWN LVC, (J Petties-Jacks).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC31</td>
+                            
+                            <td>Conrad Heisey rush for 2 yards to the LVC33, (B Muschlitz; P Conforti).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at LVC33</td>
+                            
+                            <td>Leo Kyte pass complete  to Jake Zeigler for 15 yards to the LVC481ST DOWN LVC, (B Salazar; D Picarillo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC48</td>
+                            
+                            <td>Conrad Heisey rush for 9 yards to the MIFB43, (B Salazar), PENALTY LVC (TEAM) loss of 15 yard to the LVC42, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 16 at LVC42</td>
+                            
+                            <td>Leo Kyte pass complete  to Pete Panichi for 3 yards to the LVC45, (H Pates).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 13 at LVC45</td>
+                            
+                            <td>Pete Panichi rush for 14 yards to the MIFB411ST DOWN LVC, (P Conforti; J Livingston).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB41</td>
+                            
+                            <td>Conrad Heisey rush for 8 yards to the MIFB33, (B Salazar).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at MIFB33</td>
+                            
+                            <td>Conrad Heisey rush for 4 yards to the MIFB291ST DOWN LVC, (B Salazar).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB29</td>
+                            
+                            <td>Conrad Heisey rush for 3 yards to the MIFB26, (J Livingston; H Pates).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at MIFB26</td>
+                            
+                            <td>Pete Panichi rush for 4 yards to the MIFB22, (J Weber).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 3 at MIFB22</td>
+                            
+                            <td>Evan Fink rush for 0 yard to the MIFB22, (H Pates; J Weber).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 3 at MIFB22</td>
+                            
+                            <td>Leo Kyte pass complete  to Joey Miller for 22 yards to the MIFB001ST DOWN LVC, clock 04:53.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Misericordia 0, Lebanon Valley 6</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kickoff loss of 11 yard to the MIFB11, P Brace return 13 yards to the MIFB24, (Derek Nye).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 04:53</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB24</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">34 plays, 0 yards, 6:24 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 04:53</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB24</td>
+                            
+                            <td>PENALTY MIFB false start(J Baker) loss of 5 yard to the MIFB19.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 15 at MIFB19</td>
+                            
+                            <td>J Puckett pass complete  to P Brace for 7 yards to the MIFB26, (A. Burkholder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at MIFB26</td>
+                            
+                            <td>C Lamoreaux rush for 6 yards to the MIFB32, (Josh Borreli).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 2 at MIFB32</td>
+                            
+                            <td>J Puckett sacked for  0 yard to the MIFB30,  ( DJ Poligone).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 4 at MIFB30</td>
+                            
+                            <td>C Wall punt 34 yards to the LVC36, Matt Richmond return 2 yards to the LVC38, (M Comerford).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC38</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">14 plays, 0 yards, 2:10 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 04:48</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC38</td>
+                            
+                            <td>Leo Kyte pass incomplete  to Joey Miller, (P Arnold).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at LVC38</td>
+                            
+                            <td>Brendan Kain rush for 4 yards to the LVC42, out-of-bounds, (D Picarillo; G Zotian).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at LVC42</td>
+                            
+                            <td>Leo Kyte pass incomplete  to Jesse Myers, (A Scaffido).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at LVC42</td>
+                            
+                            <td>Jake Zeigler punt 29 yards to the MIFB29, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB29</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">12 plays, 0 yards, 0:40 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 02:38</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB29</td>
+                            
+                            <td>PENALTY MIFB false start(A Garrity) loss of 5 yard to the MIFB24.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 15 at MIFB24</td>
+                            
+                            <td>C Lamoreaux rush for 3 yards to the MIFB27, (Joey Scerbo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 12 at MIFB27</td>
+                            
+                            <td>J Puckett sacked for  0 yard to the MIFB19,  ( David Kennedy).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 20 at MIFB19</td>
+                            
+                            <td>J Puckett rush for 12 yards to the MIFB311ST DOWN MIFB, (A. Burkholder), PENALTY LVC face mask(Josh Borreli) loss of 15 yard to the MIFB46.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB46</td>
+                            
+                            <td>1st and 10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB46</td>
+                            
+                            <td>C Lamoreaux rush for 3 yards to the MIFB49, (Zach Wierman; DJ Poligone).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr2" class="align-center summary"><div class="stats-header">      2nd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at MIFB49</td>
+                            
+                            <td>clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at MIFB49</td>
+                            
+                            <td>C Lamoreaux rush for 4 yards to the LVC47, (David Kennedy).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 3 at LVC47</td>
+                            
+                            <td>J Puckett rush for 2 yards to the LVC45, (DJ Poligone).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 1 at LVC45</td>
+                            
+                            <td>C Wall punt 40 yards to the LVC05, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC05</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">25 plays, 0 yards, -11:-22 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC05</td>
+                            
+                            <td>Pete Panichi rush for 10 yards to the LVC151ST DOWN LVC, out-of-bounds, (D Picarillo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC15</td>
+                            
+                            <td>Evan Fink rush for 4 yards to the LVC19, (T French).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at LVC19</td>
+                            
+                            <td>Evan Fink rush for 15 yards to the LVC341ST DOWN LVC, (A Buffa).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC34</td>
+                            
+                            <td>Conrad Heisey rush for 16 yards to the MIFB501ST DOWN LVC, (K Bagasevich; M Comerford).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB50</td>
+                            
+                            <td>Conrad Heisey rush for 3 yards to the MIFB47, (D Kluber), PENALTY LVC (TEAM) loss of 18 yard to the LVC35, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 25 at LVC35</td>
+                            
+                            <td>Leo Kyte pass incomplete  to Yahya McIntyre, (A Buffa).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 25 at LVC35</td>
+                            
+                            <td>Pete Panichi rush for 4 yards to the LVC39, (K Gildea).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 21 at LVC39</td>
+                            
+                            <td>Leo Kyte pass complete  to Joey Miller for 37 yards to the MIFB241ST DOWN LVC, (A Buffa).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB24</td>
+                            
+                            <td>Pete Panichi rush for 6 yards to the MIFB18, (K Gildea).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at MIFB18</td>
+                            
+                            <td>Pete Panichi rush for loss of 1 yard to the MIFB19, (B Muschlitz).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at MIFB19</td>
+                            
+                            <td>Leo Kyte pass complete  to Nate Myers for 16 yards to the MIFB031ST DOWN LVC, (M Comerford; B Salazar).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB03</td>
+                            
+                            <td>Evan Fink rush for 3 yards to the MIFB00, clock 08:42.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Misericordia 0, Lebanon Valley 12</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kickoff 0 yard to the MIFB00, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 08:42</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">32 plays, 0 yards, 4:38 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 08:42</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB00</td>
+                            
+                            <td>J Puckett pass complete  to P Brace for 26 yards to the MIFB261ST DOWN MIFB, (Trevor St.Clair), null.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB26</td>
+                            
+                            <td>J Puckett pass complete  to T Rowe for 6 yards to the MIFB32, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at MIFB32</td>
+                            
+                            <td>J Puckett pass complete  to K Kowalski for 4 yards to the MIFB361ST DOWN MIFB.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB36</td>
+                            
+                            <td>R Custodio rush for 8 yards to the MIFB44, (Jerome Duncan; Joey Scerbo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at MIFB44</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 2 at MIFB44</td>
+                            
+                            <td>J Puckett pass incomplete  to K Kowalski, null.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 2 at MIFB44</td>
+                            
+                            <td>C Wall punt 26 yards to the LVC30, Matt Richmond return 18 yards to the LVC48, (J Weber).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC48</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">17 plays, 0 yards, 2:35 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 08:42</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC48</td>
+                            
+                            <td>Brian Murphy pass complete  to Yahya McIntyre for 14 yards to the MIFB381ST DOWN LVC, (F Gonzalez).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB38</td>
+                            
+                            <td>Brian Murphy pass complete  to Yahya McIntyre for 7 yards to the MIFB31, out-of-bounds, (T Hessert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at MIFB31</td>
+                            
+                            <td>Brian Murphy rush for 7 yards to the MIFB241ST DOWN LVC, (K Gildea).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB24</td>
+                            
+                            <td>Brian Murphy pass complete  to Jake Zeigler for 24 yards to the MIFB001ST DOWN LVC, clock 04:27.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kick attempt M.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Misericordia 0, Lebanon Valley 18</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kickoff loss of 3 yard to the MIFB03, P Brace return 20 yards to the MIFB23, (John Harsch; Erik Schmeck).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 04:27</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB23</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">16 plays, 0 yards, 1:47 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 04:27</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB23</td>
+                            
+                            <td>R Custodio rush for 5 yards to the MIFB28, (Jared Cicero; David Kennedy).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at MIFB28</td>
+                            
+                            <td>J Puckett pass complete  to T Rowe for 8 yards to the MIFB361ST DOWN MIFB, out-of-bounds, (Erik Schmeck).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB36</td>
+                            
+                            <td>R Custodio rush for 3 yards to the MIFB39, (Todd Mika).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at MIFB39</td>
+                            
+                            <td>J Puckett rush for 0 yard to the MIFB39, (Zach Halpin; Joey Scerbo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at MIFB39</td>
+                            
+                            <td>J Puckett rush for loss of 4 yard to the MIFB35, (David Kennedy).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 11 at MIFB35</td>
+                            
+                            <td>Timeout Lebanon Valley, clock 02:31.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 11 at MIFB35</td>
+                            
+                            <td>C Wall punt 27 yards to the LVC38, Matt Richmond return 12 yards to the MIFB50, (D Picarillo; C Wall).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB50</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">20 plays, 0 yards, 2:0 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 02:31</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB50</td>
+                            
+                            <td>Leo Kyte pass complete  to Pete Panichi for 5 yards to the MIFB45, (T Hessert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at MIFB45</td>
+                            
+                            <td>Leo Kyte pass incomplete  to Jake Zeigler.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at MIFB45</td>
+                            
+                            <td>Leo Kyte pass complete  to Joey Miller for 7 yards to the MIFB381ST DOWN LVC, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB38</td>
+                            
+                            <td>Leo Kyte pass complete  to Jake Zeigler for 19 yards to the MIFB191ST DOWN LVC, (B Torres; B Camacho).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB19</td>
+                            
+                            <td>Leo Kyte pass incomplete  to Jake Zeigler.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at MIFB19</td>
+                            
+                            <td>Timeout Misericordia, clock 01:27.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at MIFB19</td>
+                            
+                            <td>Leo Kyte pass complete  to Darryl Sweeper for 6 yards to the MIFB13, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at MIFB13</td>
+                            
+                            <td>Leo Kyte pass complete  to Yahya McIntyre for 4 yards to the MIFB091ST DOWN LVC, (B Torres).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB09</td>
+                            
+                            <td>Leo Kyte pass complete  to Joey Miller for 7 yards to the MIFB02, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at MIFB02</td>
+                            
+                            <td>Evan Fink rush for 2 yards to the MIFB00, clock 00:42.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Misericordia 0, Lebanon Valley 24</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kickoff loss of 7 yard to the MIFB07, P Brace return 13 yards to the MIFB20, (Derek Nye; John Harsch).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 00:42</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB20</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">26 plays, 0 yards, 1:45 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 00:42</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB20</td>
+                            
+                            <td>TEAM rush for loss of 1 yard to the MIFB19.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at MIFB19</td>
+                            
+                            <td>clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr3" class="align-center summary"><div class="stats-header">      3rd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at MIFB19</td>
+                            
+                            <td>clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at MIFB19</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kickoff 53 yards to the MIFB12, P Brace return 12 yards to the MIFB24, (Derek Nye).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB24</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">14 plays, 0 yards, -14:-18 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB24</td>
+                            
+                            <td>J Puckett rush for 2 yards to the MIFB26, out-of-bounds, (Zach Halpin; Kevin Smith), null.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at MIFB26</td>
+                            
+                            <td>J Puckett pass complete  to P Brace for 10 yards to the MIFB361ST DOWN MIFB, (Todd Mika).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB36</td>
+                            
+                            <td>C Lamoreaux rush for 1 yard to the MIFB37, (Zach Halpin).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at MIFB37</td>
+                            
+                            <td>J Puckett pass complete  to P Brace for 13 yards to the MIFB501ST DOWN MIFB, (Jerome Duncan; Nate Kauffman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB50</td>
+                            
+                            <td>J Puckett pass complete  to M Barber for 17 yards to the LVC331ST DOWN MIFB, (Ryan Melley).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC33</td>
+                            
+                            <td>R Custodio rush for 0 yard to the LVC33, (DJ Poligone).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at LVC33</td>
+                            
+                            <td>R Custodio rush for loss of 2 yard to the LVC35, fumble by  recovered by MIFB R Custodio at LVC43.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 20 at LVC43</td>
+                            
+                            <td>J Puckett pass complete  to T Stelzer for 7 yards to the LVC36, (David Kennedy; Jared Cicero).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 13 at LVC36</td>
+                            
+                            <td>1ST DOWN MIFB.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC36</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">21 plays, 0 yards, 4:2 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 14:53</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC36</td>
+                            
+                            <td>Jake Zeigler rush for 12 yards to the LVC481ST DOWN LVC, (A Scaffido).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC48</td>
+                            
+                            <td>Pete Panichi rush for 10 yards to the MIFB421ST DOWN LVC, (K Gildea; J Petties-Jacks).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB42</td>
+                            
+                            <td>Brendan Kain rush for 8 yards to the MIFB34, (J Weber).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at MIFB34</td>
+                            
+                            <td>Leo Kyte pass incomplete  to Yahya McIntyre.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 2 at MIFB34</td>
+                            
+                            <td>Kenny King rush for 2 yards to the MIFB321ST DOWN LVC, (H Pates; J Weber).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB32</td>
+                            
+                            <td>Kenny King rush for 3 yards to the MIFB29, (K Gildea).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at MIFB29</td>
+                            
+                            <td>Brendan Kain rush for 1 yard to the MIFB28, (J Livingston).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at MIFB28</td>
+                            
+                            <td>Leo Kyte rush for 10 yards to the MIFB181ST DOWN LVC, (P Conforti; J Weber).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB18</td>
+                            
+                            <td>Brendan Kain rush for 18 yards to the MIFB001ST DOWN LVC, clock 07:17.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Misericordia 0, Lebanon Valley 30</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kickoff loss of 9 yard to the MIFB09, P Brace return 14 yards to the MIFB23, (Derek Nye; Dachonn Johnson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 07:17</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB23</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">24 plays, 0 yards, 3:41 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 07:17</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB23</td>
+                            
+                            <td>J Puckett rush for 8 yards to the MIFB31, (Aaron Cummins), null.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at MIFB31</td>
+                            
+                            <td>J Puckett pass complete  to S Johnson for 6 yards to the MIFB371ST DOWN MIFB, out-of-bounds, (Matt Morell).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB37</td>
+                            
+                            <td>J Puckett pass complete  to S Johnson for 15 yards to the LVC481ST DOWN MIFB, out-of-bounds, (Jerome Duncan; Todd Mika).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC48</td>
+                            
+                            <td>C Lamoreaux rush for 47 yards to the LVC011ST DOWN MIFB, out-of-bounds, (Jerome Duncan).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC01</td>
+                            
+                            <td>J Puckett pass complete  to D Lucchesi for 1 yard to the LVC00, clock 05:14.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>S Clemson kick attempt good, .</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Misericordia 6, Lebanon Valley 30</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>S Clemson kickoff loss of 18 yard to the LVC18, Bryan Ek return 17 yards to the LVC35, (B Camacho).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 05:14</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC35</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">22 plays, 0 yards, 2:2 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 05:14</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC35</td>
+                            
+                            <td>Brian Murphy pass complete  to Yahya McIntyre for 2 yards to the LVC37.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at LVC37</td>
+                            
+                            <td>Brian Murphy pass incomplete  to Jesse Myers, null.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at LVC37</td>
+                            
+                            <td>Brian Murphy pass complete  to Conrad Heisey for 57 yards to the MIFB061ST DOWN LVC, (J Petties-Jacks).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB06</td>
+                            
+                            <td>Brian Murphy rush for 4 yards to the MIFB02, out-of-bounds, (K Gildea).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at MIFB02</td>
+                            
+                            <td>Kenny King rush for 2 yards to the MIFB00, clock 03:30.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Jake Zeigler P attempt M.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Misericordia 6, Lebanon Valley 36</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kickoff loss of 9 yard to the MIFB09, P Brace return 25 yards to the MIFB34, (A. Burkholder; John Harsch).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 03:30</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB34</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">17 plays, 0 yards, 1:45 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 03:30</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB34</td>
+                            
+                            <td>J Puckett rush for 9 yards to the MIFB43, (Joey Scerbo).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 1 at MIFB43</td>
+                            
+                            <td>C Lamoreaux rush for 5 yards to the MIFB481ST DOWN MIFB, (Matt Morell).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB48</td>
+                            
+                            <td>PENALTY MIFB false start(T Davis) loss of 5 yard to the MIFB43.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 15 at MIFB43</td>
+                            
+                            <td>J Puckett pass incomplete  to S Johnson, (Erik Schmeck).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 15 at MIFB43</td>
+                            
+                            <td>J Puckett rush for 6 yards to the MIFB49, (Trevor St.Clair; A. Burkholder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 9 at MIFB49</td>
+                            
+                            <td>J Puckett pass complete  to P Brace for 8 yards to the LVC43, (Dachonn Johnson), null.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 1 at LVC43</td>
+                            
+                            <td>J Puckett pass complete  to P Brace for 6 yards to the LVC371ST DOWN MIFB, (Bryan Kasper).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC37</td>
+                            
+                            <td>C Lamoreaux rush for 4 yards to the LVC33, (Matt Morell).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr4" class="align-center summary"><div class="stats-header">       4th 
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at LVC33</td>
+                            
+                            <td>clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at LVC33</td>
+                            
+                            <td>J Puckett pass incomplete  to P Brace.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at LVC33</td>
+                            
+                            <td>J Puckett sacked for  0 yard to the LVC37,  ( A. Livingston, Kyle Pfirman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 10 at LVC37</td>
+                            
+                            <td>J Puckett pass incomplete  to P Brace1ST DOWN MIFB.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC37</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">26 plays, 0 yards, -10:-45 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC37</td>
+                            
+                            <td>PENALTY LVC false start(TEAM) loss of 5 yard to the LVC32.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 15 at LVC32</td>
+                            
+                            <td>Brian Murphy pass incomplete  to Darryl Sweeper.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 15 at LVC32</td>
+                            
+                            <td>PENALTY LVC false start(Dustin Jones) loss of 5 yard to the LVC27.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 20 at LVC27</td>
+                            
+                            <td>Matt Richmond rush for 4 yards to the LVC31, (A Buffa).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 16 at LVC31</td>
+                            
+                            <td>Sam Colletts rush for 0 yard to the LVC31, fumble by  recovered by LVC Brian Murphy at LVC14.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 33 at LVC14</td>
+                            
+                            <td>PENALTY MIFB (TEAM) loss of 5 yard to the LVC19.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 28 at LVC19</td>
+                            
+                            <td>Jake Zeigler punt 35 yards to the MIFB46, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB46</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">16 plays, 0 yards, 1:59 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 14:08</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB46</td>
+                            
+                            <td>C Washo rush for loss of 1 yard to the MIFB45, (Drew Murphy; Tony Shearer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at MIFB45</td>
+                            
+                            <td>J Puckett pass incomplete  to T Rowe, (Dachonn Johnson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 11 at MIFB45</td>
+                            
+                            <td>C Washo rush for 5 yards to the LVC50, out-of-bounds, (Kyle Wenger).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at LVC50</td>
+                            
+                            <td>C Wall punt 26 yards to the LVC24, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC24</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">12 plays, 0 yards, 1:24 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 12:09</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC24</td>
+                            
+                            <td>Matt Richmond rush for 4 yards to the LVC28, (S Weg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at LVC28</td>
+                            
+                            <td>Matt Richmond rush for 10 yards to the LVC381ST DOWN LVC, (B Camacho; M Comerford).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC38</td>
+                            
+                            <td>Kenny King rush for 11 yards to the LVC491ST DOWN LVC, (T Bulkley).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC49</td>
+                            
+                            <td>Kenny King rush for 5 yards to the MIFB46, (J Livingston; T Bulkley).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at MIFB46</td>
+                            
+                            <td>Matt Richmond rush for 7 yards to the MIFB391ST DOWN LVC, (T Bulkley).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB39</td>
+                            
+                            <td>Matt Richmond rush for loss of 3 yard to the MIFB42, (T Hessert; M Miles).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 13 at MIFB42</td>
+                            
+                            <td>3th and 13.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 13 at MIFB42</td>
+                            
+                            <td>Brian Murphy pass complete  to Mike Smith for 41 yards to the MIFB011ST DOWN LVC, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB01</td>
+                            
+                            <td>Alex Kirchner rush for 1 yard to the MIFB00, clock 06:36.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Misericordia 6, Lebanon Valley 42</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Sean Fakete kickoff loss of 12 yard to the MIFB12, P Brace return 13 yards to the MIFB25, (Dachonn Johnson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 06:36</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB25</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">25 plays, 0 yards, 4:16 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 06:36</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at MIFB25</td>
+                            
+                            <td>B Delgado rush for 3 yards to the MIFB28, (Mike Mullen).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at MIFB28</td>
+                            
+                            <td>B Delgado rush for 3 yards to the MIFB31, (Alec Bowers).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at MIFB31</td>
+                            
+                            <td>C Washo pass incomplete  to N Ciocchi.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 4 at MIFB31</td>
+                            
+                            <td>C Wall punt 37 yards to the LVC32, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC32</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">10 plays, 0 yards, 1:25 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Lebanon Valley at 06:29</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC32</td>
+                            
+                            <td>JP Gething rush for 2 yards to the LVC34.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at LVC34</td>
+                            
+                            <td>JP Gething rush for 8 yards to the LVC421ST DOWN LVC, (A Buffa; T Hessert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC42</td>
+                            
+                            <td>Tanner Link rush for 5 yards to the LVC47, (S Weg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at LVC47</td>
+                            
+                            <td>Tanner Link rush for 4 yards to the MIFB49, (B Camacho).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at MIFB49</td>
+                            
+                            <td>JP Gething rush for 0 yard to the MIFB49, (S Weg; T Martin).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 1 at MIFB49</td>
+                            
+                            <td>JP Gething rush for loss of 6 yard to the LVC451ST DOWN LVC, fumble by  recovered by MIFB T Martin at LVC44.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC44</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">13 plays, 0 yards, 2:41 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Misericordia at 05:04</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC44</td>
+                            
+                            <td>M Pheasant sacked for  0 yard to the MIFB48,  ( Jacob Heaton).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 18 at MIFB48</td>
+                            
+                            <td>B Delgado rush for 20 yards to the LVC321ST DOWN MIFB, (DJ Johnson; John Harsch), PENALTY LVC pass interference(John Salcedo) loss of 14 yard to the LVC18.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC18</td>
+                            
+                            <td>1st and 10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC18</td>
+                            
+                            <td>B Delgado rush for 2 yards to the LVC16, (Mike Mullen).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at LVC16</td>
+                            
+                            <td>B Delgado rush for 4 yards to the LVC12, (Mike Mullen; Mike Pugh).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at LVC12</td>
+                            
+                            <td>B Delgado rush for 6 yards to the LVC061ST DOWN MIFB, (Jacob Heaton).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LVC06</td>
+                            
+                            <td>clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                     </table>
+    </div>
+ 
+
+     
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        if (!$('.stats-tabs li.active').length) {
+            if (history.replaceState) {
+                history.replaceState({}, '', '?view=' + $('.stats-tabs li:first').addClass('active').children('a').data('view'));
+            } else {
+                $('.stats-tabs li:first').addClass('active');
+            }
+        }
+    })
+</script>
+
+<!-- from: generic theme -->
+
+<!-- rum footer -->
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"applicationID":"1004718","applicationTime":80,"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"a8324e80d1","transactionName":"MgcAZENYXhJYVkFdXQtNJFldTVUTFnFaWVMMDEJeUFRVQV9cWUBXFw==","agent":"","errorBeacon":"bam.nr-data.net"}</script>
+
+
+</body>
+</html>

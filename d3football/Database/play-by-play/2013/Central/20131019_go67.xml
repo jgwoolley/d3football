@@ -1,0 +1,3265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta name="robots" content="NOINDEX" />
+<link rel="stylesheet" href="/info/boilerplate.css" type="text/css" />
+<!-- rum header -->
+
+<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQ4CWFNbGwIAVFVVBgk="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(12),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(c){try{i("ierr",[c,(new Date).getTime(),!0])}catch(s){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(13),c=t("ee"),s=t("loader"),f=window.onerror,u=!1,d=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(5),t(4),"addEventListener"in window&&t(3),s.xhrWrappable&&t(6),u=!0)}c.on("fn-start",function(t,e,n){u&&(d+=1)}),c.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),c.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),c.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(14)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],4:[function(t,e,n){var r=t("ee").get("raf"),o=t(14)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],5:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(14)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],6:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,v,"fn-",c)}function i(t){y.push(t),h&&(w=-w,b.data=w)}function a(){for(var t=0;t<y.length;t++)r([],y[t]);y.length&&(y=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(3);var f=t("ee"),u=f.get("xhr"),d=t(14)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",v=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],y=[];e.exports=u;var g=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(p,g),g.prototype=p.prototype,d.inPlace(g.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var w=1,b=document.createTextNode(w);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],7:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return h(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(8),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(11),h=t(10),m=window.XMLHttpRequest;a.features.xhr=!0,t(6),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=h(r);i&&(n.txSize=i)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var a=0;a<d;a++)e.addEventListener(u[a],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],8:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],9:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(12),c=t(13),s=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var u=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(u,function(t,e){f[e]=o(d+e,!0,"api")}),f.addPageAction=o(d+"addPageAction",!0),f.setCurrentRouteName=o(d+"routeName",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var p=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{s.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){p[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],10:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],11:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],12:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],13:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],14:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(13),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){l([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o)}catch(a){l([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){l([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function l(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o){if(!l.aborted){t&&t(n,r,o);for(var i=e(o),a=h(n),c=a.length,s=0;s<c;s++)a[s].apply(i,r);var f=u[g[n]];return f&&f.push([w,n,r,i]),i}}function p(t,e){y[t]=h(t).concat(e)}function h(t){return y[t]||[]}function m(t){return d[t]=d[t]||o(n)}function v(t,e){f(t,function(t,n){e=e||"feature",g[n]=e,e in u||(u[e]=[])})}var y={},g={},w={on:p,emit:n,get:m,listeners:h,context:e,buffer:v,abort:a,aborted:!1};return w}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var c="nr@context",s=t("gos"),f=t(12),u={},d={},l=e.exports=o();l.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!b++){var t=w.info=NREUM.info,e=d.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();s(y,function(e,n){t[e]||(t[e]=n)}),c("mark",["onload",a()],null,"api");var n=d.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var c=t("handle"),s=t(12),f=t("ee"),u=window,d=u.document,l="addEventListener",p="attachEvent",h=u.XMLHttpRequest,m=h&&h.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:h,REQ:u.Request,EV:u.Event,PR:u.Promise,MO:u.MutationObserver},t(9);var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1016.min.js"},g=h&&m&&m[l]&&!/CriOS/.test(navigator.userAgent),w=e.exports={offset:a(),origin:v,features:{},xhrWrappable:g};d[l]?(d[l]("DOMContentLoaded",i,!1),u[l]("load",r,!1)):(d[p]("onreadystatechange",o),u[p]("onload",r)),c("mark",["firstbyte",a()],null,"api");var b=0},{}]},{},["loader",2,7]);</script>
+
+</head>
+<body onload="print()" class="printer-body">
+<div class="align-center">
+    <div>Buena Vista vs. Central College</div>
+    <div>October 19, 2013, 1 p.m.</div>
+    <div>at Pella, Iowa | Schipper Stadium</div>
+    <div></div>
+</div>
+
+<div class="stats-wrapper clearfix">
+
+
+<table>
+  <tr>
+         <td width="50%" align="center">
+          <span class="stats-header">Buena Vista</span>
+          <br /><span class="stats-header">13</span>
+     </td>
+         <td width="50%" align="center">
+          <span class="stats-header">Central</span>
+          <br /><span class="stats-header">23</span>
+     </td>
+      </tr>
+</table>
+
+<div class="stats-fullbox clearfix">
+<table>
+ <tr>
+  <th class="align-left">Scoring</th>
+      <th style="width:40px; text-align:center;">                                        1
+                        </th>
+      <th style="width:40px; text-align:center;">                                        2
+                        </th>
+      <th style="width:40px; text-align:center;">                                        3
+                        </th>
+      <th style="width:40px; text-align:center;">                                        4
+                        </th>
+    
+      <th style="width:60px">Final</th>
+   </tr>
+
+
+ <tr>
+  <td>
+      Buena Vista
+                (0-6)
+        </td>
+    <td class="align-center">7</td>
+    <td class="align-center">3</td>
+    <td class="align-center">3</td>
+    <td class="align-center">0</td>
+    <td class="align-center">13</td>
+ </tr>
+ <tr>
+  <td>
+      Central
+                (3-3)
+        </td>
+    <td class="align-center">0</td>
+    <td class="align-center">6</td>
+    <td class="align-center">3</td>
+    <td class="align-center">14</td>
+    <td class="align-center">23</td>
+ </tr>
+
+</table>
+</div>
+
+
+    <div class="stats-tabs clearfix">
+        <ul class="clearfix">
+          <li ><a href="/seasons/2013/boxscores/20131019_go67.xml" data-view="boxscore">Box Score</a>
+          <li  class="active" ><a href="/seasons/2013/boxscores/20131019_go67.xml?view=plays" data-view="plays" id="pbp">Play by Play</a></li>          <li ><a href="/seasons/2013/boxscores/20131019_go67.xml?view=drives" data-view="drives">Drive Summary</a></li>          <li ><a href="/seasons/2013/boxscores/20131019_go67.xml?view=starters" data-view="starters">Starters</a></li>          <li ><a href="/seasons/2013/boxscores/20131019_go67.xml?view=participation" data-view="participation">Participation</a></li>
+          <li><a href="/seasons/2013/boxscores/20131019_go67.xml?tmpl=fbxml-monospace-template" target="_blank">Coach's View</a></li>
+        </ul>
+    </div>
+
+
+
+
+
+
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+
+
+
+                <div class="stats-fullbox clearfix">
+        <table>
+                                    <tr>
+                <td colspan="2">
+                    <strong>Quarters: </strong>
+                                                                    <a href="#qtr1">      1st
+      </a>
+                                             |                         <a href="#qtr2">      2nd
+      </a>
+                                             |                         <a href="#qtr3">      3rd
+      </a>
+                                             |                         <a href="#qtr4">       4th 
+      </a>
+                                    </td>
+            </tr>
+                                                                 <tr><td colspan="2" id="qtr1" class="align-center summary"><div class="stats-header">      1st
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU35</td>
+                            
+                            <td>Central wins the toss, defers, BV will receive and defend N end</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU35</td>
+                            
+                            <td>CEN ball on CEN35.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Kevin Sheldon kickoff 64 yards to the BVU01, C. Cottingham return 51 yards to the CEN48 (Tommy Feller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN48</td>
+                            
+                            <td>Dylan Barrett rush for loss of 2 yards to the 50 yardline (Mike Young; Jack Shipley).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 12 at BVU50</td>
+                            
+                            <td>Bobby Brown pass complete to Ben Seitz for 25 yards to the CEN25 (Keith Rush; Jacob Edleman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN25</td>
+                            
+                            <td>Dylan Barrett rush for 5 yards to the CEN20 (Jason Breon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at CEN20</td>
+                            
+                            <td>Bobby Brown pass incomplete to C. Cottingham (Jason Breon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at CEN20</td>
+                            
+                            <td>Bobby Brown pass complete to Gunner Gilland for 11 yards to the CEN09.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at CEN09</td>
+                            
+                            <td>Dylan Barrett rush for 3 yards to the CEN06 (Jacob Tune; Mitch Schroeder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at CEN06</td>
+                            
+                            <td>Dylan Barrett rush for 3 yards to the CEN03 (Jack Shipley; Zac Miller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at CEN03</td>
+                            
+                            <td>Bobby Brown rush for 3 yards to the CEN00, TOUCHDOWN, clock 11:13.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Tyler Stolen kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Buena Vista 7, Central 0</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">8 plays, 48 yards, 03:47 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Tyler Stolen kickoff 65 yards to the CEN05, Josh Osborn return 35 yards to the CEN40 (Connor Downs).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Central at 11:06</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN40</td>
+                            
+                            <td>Central College drive start at 11:06.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN40</td>
+                            
+                            <td>Josh Osborn rush for 5 yards to the CEN45 (Matt Schmidt; Beau Van Wechel).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at CEN45</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Blaine Forsythe.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at CEN45</td>
+                            
+                            <td>Josh Osborn rush for 4 yards to the CEN49 (Matt Schmidt; Derek Schwartz).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 1 at CEN49</td>
+                            
+                            <td>Blaine Forsythe punt 33 yards to the BVU18, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 9 yards, 01:27 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 09:39</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU18</td>
+                            
+                            <td>Buena Vista drive start at 09:39.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU18</td>
+                            
+                            <td>Dylan Barrett rush for 1 yard to the BVU19 (Mitch Schroeder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at BVU19</td>
+                            
+                            <td>Dylan Barrett rush for 15 yards to the BVU34 (Jacob Tune).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU34</td>
+                            
+                            <td>Bobby Brown pass incomplete (Danny Samson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at BVU34</td>
+                            
+                            <td>Bobby Brown pass complete to Adam Cave for 12 yards to the BVU46 (Jacob Tune).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU46</td>
+                            
+                            <td>Dylan Barrett rush for 4 yards to the 50 yardline (Mitch Schroeder; Jacob Edleman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at BVU50</td>
+                            
+                            <td>Bobby Brown rush for 10 yards to the CEN40 (Eric Larson; Mike Young).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN40</td>
+                            
+                            <td>Dylan Barrett rush for 24 yards to the CEN16 (Eric Larson; Zac Miller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN16</td>
+                            
+                            <td>Dylan Barrett rush for 5 yards to the CEN11 (Jacob Edleman; Mitch Schroeder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at CEN11</td>
+                            
+                            <td>Bobby Brown pass complete to J. Henningsen for 8 yards to the CEN03 (Jason Breon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at CEN03</td>
+                            
+                            <td>Bobby Brown rush for loss of 2 yards to the CEN05, fumble by ? recovered by CEN Danny Samson at CEN05.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">10 plays, 77 yards, 04:33 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Central at 05:06</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN05</td>
+                            
+                            <td>Central College drive start at 05:06.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN05</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Blaine Forsythe.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CEN05</td>
+                            
+                            <td>Josh Osborn rush for 1 yard to the CEN06 (Beau Van Wechel; Tanner Collins).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 9 at CEN06</td>
+                            
+                            <td>Aaron Eiseler sacked for loss of 5 yards to the CEN01 (Kyle Arnold), fumble by ? recovered by CEN Travis Hook at CEN01.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 14 at CEN01</td>
+                            
+                            <td>Blaine Forsythe punt 66 yards to the BVU33, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, -4 yards, 01:38 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 03:28</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU33</td>
+                            
+                            <td>Buena Vista drive start at 03:28.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU33</td>
+                            
+                            <td>Dylan Barrett rush for 4 yards to the BVU37 (Jaemin Powell; Mitch Schroeder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at BVU37</td>
+                            
+                            <td>Bobby Brown pass incomplete to C. Cottingham.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at BVU37</td>
+                            
+                            <td>Bobby Brown pass complete to Adam Cave for 50 yards to the CEN13 (Jacob Edleman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN13</td>
+                            
+                            <td>Dylan Barrett rush for loss of 1 yard to the CEN14 (Jack Shipley).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at CEN14</td>
+                            
+                            <td>Dylan Barrett rush for 13 yards to the CEN01 (Mitch Schroeder; Zac Miller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at CEN01</td>
+                            
+                            <td>Bobby Brown rush for no gain to the CEN01 (Keith Rush; Danny Samson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at CEN01</td>
+                            
+                            <td>Dylan Barrett rush for loss of 1 yard to the CEN02 (Danny Samson; Spencer Matlock).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr2" class="align-center summary"><div class="stats-header">      2nd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at CEN02</td>
+                            
+                            <td>Start of 2nd quarter, clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at CEN02</td>
+                            
+                            <td>Bobby Brown pass incomplete to Jay Nissen, QB hurry by Keith Rush.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">       4th 
+       and Goal at CEN02</td>
+                            
+                            <td>Tyler Stolen field goal attempt from 19 GOOD, clock 14:53.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Buena Vista 10, Central 0</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Tyler Stolen kickoff 68 yards to the CEN02, Brendon Boerm return 19 yards to the CEN21 (Austin Gibbs).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Central at 14:39</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">9 plays, 65 yards, 03:35 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN21</td>
+                            
+                            <td>Central College drive start at 14:39.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN21</td>
+                            
+                            <td>Brendon Boerm rush for 9 yards to the CEN30 (Kyle Arnold).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 1 at CEN30</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Jack Norgaard, dropped pass.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at CEN30</td>
+                            
+                            <td>De'Andre Currie rush for 2 yards to the CEN32 (Matt Schmidt; Brady Randall).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN32</td>
+                            
+                            <td>Josh Osborn rush for 5 yards to the CEN37 (Brady Randall; Derek Schwartz).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at CEN37</td>
+                            
+                            <td>Aaron Eiseler pass complete to Mitchell Boerm for 3 yards to the CEN40 (Kyle Arnold).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 2 at CEN40</td>
+                            
+                            <td>Aaron Eiseler pass complete to Brendon Boerm for 7 yards to the CEN47 (Mason Nielsen; Kyle Arnold).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN47</td>
+                            
+                            <td>De'Andre Currie rush for 5 yards to the BVU48 (Matt Schmidt; Beau Van Wechel).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at BVU48</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Brendon Boerm.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at BVU48</td>
+                            
+                            <td>PENALTY CEN false start 5 yards to the CEN47.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 10 at CEN47</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to De'Andre Currie.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 10 at CEN47</td>
+                            
+                            <td>Blaine Forsythe punt 38 yards to the BVU15, fair catch by Ben Seitz.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">9 plays, 26 yards, 03:32 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 11:07</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU15</td>
+                            
+                            <td>Buena Vista drive start at 11:07.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU15</td>
+                            
+                            <td>Dylan Barrett rush for 3 yards to the BVU18 (Jack Shipley; Keith Rush).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at BVU18</td>
+                            
+                            <td>Bobby Brown pass complete to J. Henningsen for 12 yards to the BVU30 (Jason Breon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU30</td>
+                            
+                            <td>Dylan Barrett rush for loss of 4 yards to the BVU26 (Brody Janssen).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 14 at BVU26</td>
+                            
+                            <td>Bobby Brown pass intercepted by Jacob Edleman at the BVU45, Jacob Edleman return 40 yards to the BVU05 (Cam Knobbe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">4 plays, 11 yards, 02:07 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Central at 09:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at BVU05</td>
+                            
+                            <td>Central College drive start at 09:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at BVU05</td>
+                            
+                            <td>Aaron Eiseler pass complete to Grant McArdle for no gain to the BVU05 (Mason Nielsen).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at BVU05</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Brendon Boerm.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at BVU05</td>
+                            
+                            <td>Timeout Central College, clock 08:10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at BVU05</td>
+                            
+                            <td>Aaron Eiseler pass complete to Grant McArdle for 5 yards to the BVU00, TOUCHDOWN, clock 08:05.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Kevin Sheldon kick attempt failed.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">3 plays, 5 yards, 00:55 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Kevin Sheldon kickoff 61 yards to the BVU09, Mason Nielsen return 17 yards to the BVU26 (Clayton Blythe; Keegan Frisch).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 08:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU26</td>
+                            
+                            <td>Buena Vista drive start at 08:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU26</td>
+                            
+                            <td>Dylan Barrett rush for loss of 2 yards to the BVU24, fumble by ? recovered by BVU Dylan Barrett at BVU24.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 12 at BVU24</td>
+                            
+                            <td>Bobby Brown pass incomplete to C. Cottingham (Mitch Schroeder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 12 at BVU24</td>
+                            
+                            <td>Bobby Brown pass incomplete (Jack Shipley).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 12 at BVU24</td>
+                            
+                            <td>Tyler Stolen punt 37 yards to the CEN39, Taylor Cox return 6 yards to the CEN45 (Connor Downs; Kyle Arnold).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">3 plays, -2 yards, 01:00 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Central at 07:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN45</td>
+                            
+                            <td>Central College drive start at 07:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN45</td>
+                            
+                            <td>Josh Osborn rush for loss of 2 yards to the CEN43 (Tanner Collins).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 12 at CEN43</td>
+                            
+                            <td>Josh Osborn rush for 6 yards to the CEN49 (Matt Schmidt; Charles Angell).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at CEN49</td>
+                            
+                            <td>PENALTY CEN false start 5 yards to the CEN44.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 11 at CEN44</td>
+                            
+                            <td>Aaron Eiseler pass complete to Brendon Boerm for 14 yards to the BVU42 (Mason Nielsen).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU42</td>
+                            
+                            <td>De'Andre Currie rush for 2 yards to the BVU40 (Charles Angell; Matt Schmidt).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at BVU40</td>
+                            
+                            <td>Josh Osborn rush for 6 yards to the BVU34 (Beau Van Wechel; Tanner Collins).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 2 at BVU34</td>
+                            
+                            <td>Aaron Eiseler pass complete to Brendon Boerm for 3 yards to the BVU31 (Ryan Anderson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU31</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Austin Shaver.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at BVU31</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Blaine Forsythe (Mack Snelling).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 10 at BVU31</td>
+                            
+                            <td>Aaron Eiseler pass complete to Josh Osborn for 1 yard to the BVU30 (Kyle Arnold; Matthew Best).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 9 at BVU30</td>
+                            
+                            <td>Timeout Central College, clock 01:57.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 9 at BVU30</td>
+                            
+                            <td>Blaine Forsythe punt 24 yards to the BVU06, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">9 plays, 25 yards, 05:11 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 01:49</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU06</td>
+                            
+                            <td>Buena Vista drive start at 01:49.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU06</td>
+                            
+                            <td>Bobby Brown pass complete to C. Cottingham for 9 yards to the BVU15 (Jason Breon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 1 at BVU15</td>
+                            
+                            <td>Cody Cole rush for 2 yards to the BVU17 (Mike Young; Danny Samson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU17</td>
+                            
+                            <td>Cody Cole rush for 1 yard to the BVU18 (Mitch Schroeder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at BVU18</td>
+                            
+                            <td>Cody Cole rush for 1 yard to the BVU19 (Brody Janssen; Mitch Schroeder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at BVU19</td>
+                            
+                            <td>End of half, clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr3" class="align-center summary"><div class="stats-header">      3rd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 8 at BVU19</td>
+                            
+                            <td>Start of 3rd quarter, clock 15:00, BVU ball on BVU35.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">4 plays, 13 yards, 01:49 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Tyler Stolen kickoff 63 yards to the CEN02, Brendon Boerm return 24 yards to the CEN26 (John Beck), PENALTY BVU personal foul 15 yards to the CEN41, 1st and 10, CEN ball on CEN41.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Central at 14:52</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN41</td>
+                            
+                            <td>Central College drive start at 14:52.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN41</td>
+                            
+                            <td>PENALTY CEN false start 5 yards to the CEN36.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 15 at CEN36</td>
+                            
+                            <td>Aaron Eiseler pass complete to Brendon Boerm for 12 yards to the CEN48 (Ryan Anderson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at CEN48</td>
+                            
+                            <td>Aaron Eiseler pass complete to Josh Osborn for 3 yards to the BVU49 (Brady Randall; Tanner Collins).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU49</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Grant McArdle (TJ Bruch).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at BVU49</td>
+                            
+                            <td>Josh Osborn rush for loss of 1 yard to the 50 yardline (Matt Schmidt).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 11 at CEN50</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Brendon Boerm.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 11 at CEN50</td>
+                            
+                            <td>Blaine Forsythe punt 38 yards to the BVU12, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">5 plays, 9 yards, 02:16 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 12:36</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU12</td>
+                            
+                            <td>Buena Vista drive start at 12:36.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU12</td>
+                            
+                            <td>Cody Cole rush for 5 yards to the BVU17 (Jacob Edleman; Danny Samson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at BVU17</td>
+                            
+                            <td>Bobby Brown pass complete to Adam Cave for 10 yards to the BVU27 (Jason Breon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU27</td>
+                            
+                            <td>Bobby Brown sacked for loss of 8 yards to the BVU19 (Danny Samson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 18 at BVU19</td>
+                            
+                            <td>Bobby Brown pass incomplete to Greg Davis (Eric Larson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 18 at BVU19</td>
+                            
+                            <td>Cody Cole rush for 24 yards to the BVU43 (Jaemin Powell).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU43</td>
+                            
+                            <td>Cody Cole rush for loss of 3 yards to the BVU40 (Keith Rush; Mitch Schroeder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 13 at BVU40</td>
+                            
+                            <td>Bobby Brown pass incomplete to Gunner Gilland.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 13 at BVU40</td>
+                            
+                            <td>Bobby Brown pass complete to Ben Seitz for 27 yards to the CEN33 (Jacob Edleman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN33</td>
+                            
+                            <td>Bobby Brown pass incomplete to C. Cottingham.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CEN33</td>
+                            
+                            <td>Bobby Brown pass complete to C. Cottingham for 23 yards to the CEN10 (Jason Breon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at CEN10</td>
+                            
+                            <td>Cody Cole rush for loss of 1 yard to the CEN11 (Spencer Matlock; Jaemin Powell).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at CEN11</td>
+                            
+                            <td>Bobby Brown pass incomplete to Adam Cave, PENALTY BVU holding 10 yards to the CEN21, NO PLAY.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 21 at CEN21</td>
+                            
+                            <td>Bobby Brown pass incomplete to Adam Cave, QB hurry by Danny Samson.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 21 at CEN21</td>
+                            
+                            <td>Bobby Brown pass incomplete to Gunner Gilland.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 21 at CEN21</td>
+                            
+                            <td>Tyler Stolen field goal attempt from 38 GOOD, clock 07:30.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Buena Vista 13, Central 6</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Tyler Stolen kickoff 70 yards to the CEN00, touchback.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Central at 07:30</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">14 plays, 67 yards, 05:06 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN25</td>
+                            
+                            <td>Central College drive start at 07:30.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN25</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to De'Andre Currie.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CEN25</td>
+                            
+                            <td>De'Andre Currie rush for 2 yards to the CEN27 (TJ Bruch).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at CEN27</td>
+                            
+                            <td>Aaron Eiseler pass complete to Blaine Forsythe for 24 yards to the BVU49 (Ryan Anderson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU49</td>
+                            
+                            <td>Aaron Eiseler rush for 6 yards to the BVU43 (Kyle Arnold; Javen Swann).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at BVU43</td>
+                            
+                            <td>Josh Osborn rush for 7 yards to the BVU36 (Beau Van Wechel; Brady Randall).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU36</td>
+                            
+                            <td>Aaron Eiseler pass complete to Josh Osborn for 11 yards to the BVU25 (Brady Randall).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU25</td>
+                            
+                            <td>Aaron Eiseler rush for 1 yard to the BVU24 (Brady Randall).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at BVU24</td>
+                            
+                            <td>Aaron Eiseler pass complete to Blaine Forsythe for 5 yards to the BVU19, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at BVU19</td>
+                            
+                            <td>Aaron Eiseler pass complete to Blaine Forsythe for 5 yards to the BVU14 (Mack Snelling).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU14</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Josh Osborn.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at BVU14</td>
+                            
+                            <td>Aaron Eiseler rush for 1 yard to the BVU13 (Brady Randall).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 9 at BVU13</td>
+                            
+                            <td>PENALTY CEN delay of game 5 yards to the BVU18.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 14 at BVU18</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Grant McArdle (Mason Nielsen).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 14 at BVU18</td>
+                            
+                            <td>Kevin Sheldon field goal attempt from 35 GOOD, clock 02:07.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Buena Vista 13, Central 9</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Kevin Sheldon kickoff 69 yards to the BVU01, out-of-bounds, BVU ball on BVU35.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 02:07</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">13 plays, 57 yards, 05:23 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU35</td>
+                            
+                            <td>Buena Vista drive start at 02:07.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU35</td>
+                            
+                            <td>Bobby Brown pass incomplete to Gunner Gilland.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at BVU35</td>
+                            
+                            <td>Bobby Brown pass complete to J. Henningsen for 9 yards to the BVU44 (Eric Larson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at BVU44</td>
+                            
+                            <td>Bobby Brown rush for 1 yard to the BVU45 (Jack Shipley; Danny Samson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU45</td>
+                            
+                            <td>Cody Cole rush for 8 yards to the CEN47 (Eric Larson; Mike Young).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at CEN47</td>
+                            
+                            <td>Cody Cole rush for 1 yard to the CEN46 (Mitch Schroeder; Zac Miller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr4" class="align-center summary"><div class="stats-header">       4th 
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at CEN46</td>
+                            
+                            <td>Start of 4th quarter, clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at CEN46</td>
+                            
+                            <td>Cody Cole rush for loss of 1 yard to the CEN47 (Jack Shipley).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 2 at CEN47</td>
+                            
+                            <td>Tyler Stolen punt 47 yards to the CEN00, touchback.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">6 plays, 18 yards, 02:54 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Central at 14:13</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN20</td>
+                            
+                            <td>Central College drive start at 14:13.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN20</td>
+                            
+                            <td>Josh Osborn rush for no gain to the CEN20 (Derek Schwartz; Matt Schmidt).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CEN20</td>
+                            
+                            <td>Aaron Eiseler pass complete to Brendon Boerm for 5 yards to the CEN25 (Kyle Arnold).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at CEN25</td>
+                            
+                            <td>Aaron Eiseler pass complete to Brendon Boerm for 14 yards to the CEN39 (Mason Nielsen).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN39</td>
+                            
+                            <td>Josh Osborn rush for 7 yards to the CEN46 (Ryan Anderson; Brady Randall).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at CEN46</td>
+                            
+                            <td>Aaron Eiseler pass complete to Blaine Forsythe for 4 yards to the 50 yardline (Mack Snelling).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN50</td>
+                            
+                            <td>Aaron Eiseler pass complete to Jack Norgaard for 6 yards to the BVU44 (Tanner Collins; Kyle Arnold).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at BVU44</td>
+                            
+                            <td>Aaron Eiseler pass incomplete to Brendon Boerm.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at BVU44</td>
+                            
+                            <td>Aaron Eiseler pass complete to Brendon Boerm for 4 yards to the BVU40 (Matthew Best).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU40</td>
+                            
+                            <td>Josh Osborn rush for 4 yards to the BVU36 (Brady Randall).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at BVU36</td>
+                            
+                            <td>Josh Osborn rush for no gain to the BVU36 (Beau Van Wechel; Tanner Collins).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at BVU36</td>
+                            
+                            <td>Aaron Eiseler pass complete to Josh Osborn for 9 yards to the BVU27 (Ryan Anderson), PENALTY BVU personal foul 15 yards to the BVU12.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU12</td>
+                            
+                            <td>1st and 10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU12</td>
+                            
+                            <td>Timeout Buena Vista, clock 10:32.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU12</td>
+                            
+                            <td>Aaron Eiseler pass complete to Blaine Forsythe for 12 yards to the BVU00, TOUCHDOWN, clock 10:25.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Kevin Sheldon kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Buena Vista 13, Central 16</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">12 plays, 80 yards, 03:48 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Kevin Sheldon kickoff 63 yards to the BVU07, C. Cottingham return 16 yards to the BVU23 (Keegan Frisch; Nick Henry).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 10:20</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU23</td>
+                            
+                            <td>Buena Vista drive start at 10:20.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU23</td>
+                            
+                            <td>Bobby Brown rush for loss of 1 yard to the BVU22, fumble by ? recovered by BVU Bobby Brown at BVU22.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at BVU22</td>
+                            
+                            <td>Bobby Brown pass complete to Adam Cave for 16 yards to the BVU38 (Mitch Schroeder; Jacob Tune).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU38</td>
+                            
+                            <td>Cody Cole rush for loss of 6 yards to the BVU32 (Keith Rush; Danny Samson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 16 at BVU32</td>
+                            
+                            <td>Bobby Brown pass incomplete, QB hurry by Jack Shipley.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 16 at BVU32</td>
+                            
+                            <td>Bobby Brown pass complete to Ben Seitz for 23 yards to the CEN45 (Jacob Edleman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN45</td>
+                            
+                            <td>Bobby Brown pass complete to C. Cottingham for 5 yards to the CEN40 (Jason Breon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at CEN40</td>
+                            
+                            <td>Cody Cole rush for 5 yards to the CEN35 (Mitch Schroeder; Mike Young).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN35</td>
+                            
+                            <td>Cody Cole rush for 1 yard to the CEN34 (Spencer Matlock).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at CEN34</td>
+                            
+                            <td>Bobby Brown pass complete to J. Henningsen for 6 yards to the CEN28 (Jason Breon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 3 at CEN28</td>
+                            
+                            <td>Bobby Brown pass complete to Adam Cave for 7 yards to the CEN21.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN21</td>
+                            
+                            <td>Bobby Brown pass incomplete.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CEN21</td>
+                            
+                            <td>Cody Cole rush for 16 yards to the CEN05 (Jacob Tune; Eric Larson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at CEN05</td>
+                            
+                            <td>Bobby Brown pass incomplete to Jay Nissen.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at CEN05</td>
+                            
+                            <td>Bobby Brown pass incomplete to Gunner Gilland.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at CEN05</td>
+                            
+                            <td>Bobby Brown pass incomplete to Adam Cave, PENALTY CEN pass interference 3 yards to the CEN02, NO PLAY.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       0th 
+       and Goal at CEN02</td>
+                            
+                            <td>Cody Cole rush for no gain to the CEN02 (Mike Young; Brody Janssen).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at CEN02</td>
+                            
+                            <td>Cody Cole rush for no gain to the CEN02 (Danny Samson; Jack Shipley).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at CEN02</td>
+                            
+                            <td>Bobby Brown sacked for loss of 4 yards to the CEN06 (Danny Samson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at CEN06</td>
+                            
+                            <td>Timeout Buena Vista, clock 01:49.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at CEN06</td>
+                            
+                            <td>Tyler Stolen field goal attempt from 23 BLOCKED, clock 01:35 (blocked by Eric Larson), Dylan Barrett for loss of 85 yards to the BVU00, clock 01:35.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">18 plays, 71 yards, 08:45 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Central at 01:35</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Mason Nielsen kick attempt good, PENALTY BVU offside defense declined.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Buena Vista 13, Central 23</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">0 plays, 0 yards, 00:00 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Mason Nielsen kickoff 30 yards to the BVU00, TOUCHDOWN, touchback.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Buena Vista at 01:35</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU25</td>
+                            
+                            <td>Central College drive start at 01:35.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU25</td>
+                            
+                            <td>Jacob Edleman sacked for 7 yards to the BVU18 (C. Cottingham).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at BVU18</td>
+                            
+                            <td>Jacob Edleman pass complete to Jack Shipley for loss of 16 yards to the BVU34 (Connor Downs; Bobby Brown).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 19 at BVU34</td>
+                            
+                            <td>Jacob Edleman pass incomplete to Jake Wassenaar (Dylan Barrett).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 19 at BVU34</td>
+                            
+                            <td>Jacob Edleman pass complete to Drew Goepferich for loss of 4 yards to the BVU38 (Connor Ulven).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BVU38</td>
+                            
+                            <td>Team pass incomplete.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at BVU38</td>
+                            
+                            <td>Bobby Brown pass incomplete to C. Cottingham.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 10 at BVU38</td>
+                            
+                            <td>Bobby Brown pass complete to Ben Seitz for 16 yards to the CEN46 (Mitch Schroeder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CEN46</td>
+                            
+                            <td>Bobby Brown sacked for loss of 7 yards to the BVU47 (Danny Samson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 17 at BVU47</td>
+                            
+                            <td>End of game, clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                     </table>
+    </div>
+ 
+
+     
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        if (!$('.stats-tabs li.active').length) {
+            if (history.replaceState) {
+                history.replaceState({}, '', '?view=' + $('.stats-tabs li:first').addClass('active').children('a').data('view'));
+            } else {
+                $('.stats-tabs li:first').addClass('active');
+            }
+        }
+    })
+</script>
+
+<!-- from: generic theme -->
+
+<!-- rum footer -->
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"applicationID":"1004718","applicationTime":78,"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"a8324e80d1","transactionName":"MgcAZENYXhJYVkFdXQtNJFldTVUTFnFaWVMMDEJeUFRVQV9cWUBXFw==","agent":"","errorBeacon":"bam.nr-data.net"}</script>
+
+
+</body>
+</html>

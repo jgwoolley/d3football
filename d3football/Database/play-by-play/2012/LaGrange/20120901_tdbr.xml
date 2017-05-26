@@ -1,0 +1,3809 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta name="robots" content="NOINDEX" />
+<link rel="stylesheet" href="/info/boilerplate.css" type="text/css" />
+<!-- rum header -->
+
+<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQ4CWFNbGwIAVFVVBgk="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(12),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(c){try{i("ierr",[c,(new Date).getTime(),!0])}catch(s){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(13),c=t("ee"),s=t("loader"),f=window.onerror,u=!1,d=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(5),t(4),"addEventListener"in window&&t(3),s.xhrWrappable&&t(6),u=!0)}c.on("fn-start",function(t,e,n){u&&(d+=1)}),c.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),c.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),c.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(14)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],4:[function(t,e,n){var r=t("ee").get("raf"),o=t(14)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],5:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(14)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],6:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,v,"fn-",c)}function i(t){y.push(t),h&&(w=-w,b.data=w)}function a(){for(var t=0;t<y.length;t++)r([],y[t]);y.length&&(y=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(3);var f=t("ee"),u=f.get("xhr"),d=t(14)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",v=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],y=[];e.exports=u;var g=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(p,g),g.prototype=p.prototype,d.inPlace(g.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var w=1,b=document.createTextNode(w);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],7:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return h(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(8),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(11),h=t(10),m=window.XMLHttpRequest;a.features.xhr=!0,t(6),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=h(r);i&&(n.txSize=i)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var a=0;a<d;a++)e.addEventListener(u[a],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],8:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],9:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(12),c=t(13),s=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var u=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(u,function(t,e){f[e]=o(d+e,!0,"api")}),f.addPageAction=o(d+"addPageAction",!0),f.setCurrentRouteName=o(d+"routeName",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var p=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{s.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){p[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],10:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],11:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],12:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],13:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],14:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(13),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){l([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o)}catch(a){l([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){l([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function l(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o){if(!l.aborted){t&&t(n,r,o);for(var i=e(o),a=h(n),c=a.length,s=0;s<c;s++)a[s].apply(i,r);var f=u[g[n]];return f&&f.push([w,n,r,i]),i}}function p(t,e){y[t]=h(t).concat(e)}function h(t){return y[t]||[]}function m(t){return d[t]=d[t]||o(n)}function v(t,e){f(t,function(t,n){e=e||"feature",g[n]=e,e in u||(u[e]=[])})}var y={},g={},w={on:p,emit:n,get:m,listeners:h,context:e,buffer:v,abort:a,aborted:!1};return w}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var c="nr@context",s=t("gos"),f=t(12),u={},d={},l=e.exports=o();l.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!b++){var t=w.info=NREUM.info,e=d.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();s(y,function(e,n){t[e]||(t[e]=n)}),c("mark",["onload",a()],null,"api");var n=d.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var c=t("handle"),s=t(12),f=t("ee"),u=window,d=u.document,l="addEventListener",p="attachEvent",h=u.XMLHttpRequest,m=h&&h.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:h,REQ:u.Request,EV:u.Event,PR:u.Promise,MO:u.MutationObserver},t(9);var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1016.min.js"},g=h&&m&&m[l]&&!/CriOS/.test(navigator.userAgent),w=e.exports={offset:a(),origin:v,features:{},xhrWrappable:g};d[l]?(d[l]("DOMContentLoaded",i,!1),u[l]("load",r,!1)):(d[p]("onreadystatechange",o),u[p]("onload",r)),c("mark",["firstbyte",a()],null,"api");var b=0},{}]},{},["loader",2,7]);</script>
+
+</head>
+<body onload="print()" class="printer-body">
+<div class="align-center">
+    <div>LaGrange College vs. Birmingham-Southern</div>
+    <div>September 1, 2012, 1pm</div>
+    <div>at Birmingham, Ala. | Panther Stadium</div>
+    <div></div>
+</div>
+
+<div class="stats-wrapper clearfix">
+
+
+<table>
+  <tr>
+         <td width="50%" align="center">
+          <span class="stats-header">LaGrange</span>
+          <br /><span class="stats-header">14</span>
+     </td>
+         <td width="50%" align="center">
+          <span class="stats-header">Birmingham-Southern</span>
+          <br /><span class="stats-header">41</span>
+     </td>
+      </tr>
+</table>
+
+<div class="stats-fullbox clearfix">
+<table>
+ <tr>
+  <th class="align-left">Scoring</th>
+      <th style="width:40px; text-align:center;">                                        1
+                        </th>
+      <th style="width:40px; text-align:center;">                                        2
+                        </th>
+      <th style="width:40px; text-align:center;">                                        3
+                        </th>
+      <th style="width:40px; text-align:center;">                                        4
+                        </th>
+    
+      <th style="width:60px">Final</th>
+   </tr>
+
+
+ <tr>
+  <td>
+      LaGrange
+                (0-1)
+        </td>
+    <td class="align-center">0</td>
+    <td class="align-center">0</td>
+    <td class="align-center">7</td>
+    <td class="align-center">7</td>
+    <td class="align-center">14</td>
+ </tr>
+ <tr>
+  <td>
+      Birmingham-Southern
+                (1-0)
+        </td>
+    <td class="align-center">6</td>
+    <td class="align-center">14</td>
+    <td class="align-center">14</td>
+    <td class="align-center">7</td>
+    <td class="align-center">41</td>
+ </tr>
+
+</table>
+</div>
+
+
+    <div class="stats-tabs clearfix">
+        <ul class="clearfix">
+          <li ><a href="/seasons/2012/boxscores/20120901_tdbr.xml" data-view="boxscore">Box Score</a>
+          <li  class="active" ><a href="/seasons/2012/boxscores/20120901_tdbr.xml?view=plays" data-view="plays" id="pbp">Play by Play</a></li>          <li ><a href="/seasons/2012/boxscores/20120901_tdbr.xml?view=drives" data-view="drives">Drive Summary</a></li>          <li ><a href="/seasons/2012/boxscores/20120901_tdbr.xml?view=starters" data-view="starters">Starters</a></li>          <li ><a href="/seasons/2012/boxscores/20120901_tdbr.xml?view=participation" data-view="participation">Participation</a></li>
+          <li><a href="/seasons/2012/boxscores/20120901_tdbr.xml?tmpl=fbxml-monospace-template" target="_blank">Coach's View</a></li>
+        </ul>
+    </div>
+
+
+
+
+
+
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+
+
+
+                <div class="stats-fullbox clearfix">
+        <table>
+                                    <tr>
+                <td colspan="2">
+                    <strong>Quarters: </strong>
+                                                                    <a href="#qtr1">      1st
+      </a>
+                                             |                         <a href="#qtr2">      2nd
+      </a>
+                                             |                         <a href="#qtr3">      3rd
+      </a>
+                                             |                         <a href="#qtr4">       4th 
+      </a>
+                                    </td>
+            </tr>
+                                                                 <tr><td colspan="2" id="qtr1" class="align-center summary"><div class="stats-header">      1st
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE30</td>
+                            
+                            <td>BSC wins coin toss. Defers to second half..</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE30</td>
+                            
+                            <td>Brandon Johnson kickoff 65 yards to the LAGRANGE00, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE00</td>
+                            
+                            <td>Cameron Budzius rush for loss of 30 yard to the LAGRANGE30, (Larry Murdock).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 40 at LAGRANGE30</td>
+                            
+                            <td>William Weller rush for 0 yard to the LAGRANGE30, (Larry Murdock).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 40 at LAGRANGE30</td>
+                            
+                            <td>Cameron Budzius pass complete  to William Weller for loss of 2 yard to the LAGRANGE32, (Justin McIntyre).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 42 at LAGRANGE32</td>
+                            
+                            <td>PENALTY LAGRANGE substitution infraction(TM) loss of 5 yard to the LAGRANGE27.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 37 at LAGRANGE27</td>
+                            
+                            <td>Matt Hansard punt loss of 21 yard to the LAGRANGE48, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE48</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">17 plays, 0 yards, 1:43 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE48</td>
+                            
+                            <td>Mitch Gutierrez pass incomplete  to Brandon Jones.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at LAGRANGE48</td>
+                            
+                            <td>Scott Green rush for loss of 5 yard to the LAGRANGE43, (Anderson Porter; Quin Snipes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 15 at LAGRANGE43</td>
+                            
+                            <td>Mitch Gutierrez pass incomplete  to Scott Green.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 15 at LAGRANGE43</td>
+                            
+                            <td>Cameron Tootle punt loss of 43 yard to the LAGRANGE00, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 13:17</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE20</td>
+                            
+                            <td>Kent Gibson rush for 0 yard to the LAGRANGE201ST DOWN LAGRANGE, fumble forced by Connor Shannon, fumble by  recovered by BSC R. Nelson at LAGRANGE20.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE20</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">7 plays, 0 yards, 0:10 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 12:24</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE20</td>
+                            
+                            <td>Jimmy Stainback rush for 11 yards to the LAGRANGE091ST DOWN BSC, (Anthony Cochran).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE09</td>
+                            
+                            <td>Joseph Moultrie rush for 8 yards to the LAGRANGE01, (Arno. Jefferson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at LAGRANGE01</td>
+                            
+                            <td>Shawn Morris rush for 0 yard to the LAGRANGE01, (Tyler Johnson; Andre Carter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 2 at LAGRANGE01</td>
+                            
+                            <td>Jimmy Stainback rush for 0 yard to the LAGRANGE01, (Andre Carter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 2 at LAGRANGE01</td>
+                            
+                            <td>Marquis Pratt rush for 1 yard to the LAGRANGE001ST DOWN BSC, clock 10:19.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Mark Beckley kick attempt M.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Brandon Johnson kickoff 0 yard to the LAGRANGE00, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 10:19</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">16 plays, 0 yards, 1:55 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 10:19</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE00</td>
+                            
+                            <td>William Weller rush for loss of 27 yard to the LAGRANGE27, (Thad. Greenaway).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 37 at LAGRANGE27</td>
+                            
+                            <td>William Weller rush for loss of 9 yard to the LAGRANGE36, (Corneil. Harper).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 46 at LAGRANGE36</td>
+                            
+                            <td>Corey DeLoach rush for 0 yard to the LAGRANGE36, (Corneil. Harper).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 46 at LAGRANGE36</td>
+                            
+                            <td>Cameron Budzius pass incomplete  to L. Gunn1ST DOWN BSC, (Nick Simmons).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE36</td>
+                            
+                            <td>Ed Russ pass complete  to R.J. Miles for 9 yards to the LAGRANGE45, (Jordan Culliver).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 1 at LAGRANGE45</td>
+                            
+                            <td>PENALTY LAGRANGE delay of game(TM) loss of 5 yard to the LAGRANGE40.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at LAGRANGE40</td>
+                            
+                            <td>David Harber punt 37 yards to the BSC23, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC23</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">17 plays, 0 yards, 2:49 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 10:19</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC23</td>
+                            
+                            <td>Shawn Morris rush for 1 yard to the BSC24, (Scott Chewning; Andre Carter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at BSC24</td>
+                            
+                            <td>Jimmy Stainback rush for 7 yards to the BSC31, (Andre Carter), PENALTY BSC holding(TEAM) loss of 15 yard to the BSC16.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 17 at BSC16</td>
+                            
+                            <td>2nd and 17.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 17 at BSC16</td>
+                            
+                            <td>Jimmy Stainback rush for 11 yards to the BSC27, (Chris Vernet; Zach Inman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at BSC27</td>
+                            
+                            <td>Shawn Morris rush for 13 yards to the BSC401ST DOWN BSC, (Anthony Cochran).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC40</td>
+                            
+                            <td>Sam Vermilyea rush for 9 yards to the BSC49, (P.G. Standard).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 1 at BSC49</td>
+                            
+                            <td>Jimmy Stainback rush for loss of 3 yard to the BSC46, fumble by  recovered by BSC John White at BSC46.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at BSC46</td>
+                            
+                            <td>Jimmy Stainback rush for 1 yard to the BSC47, (Corneil. Harper).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 3 at BSC47</td>
+                            
+                            <td>Cameron Haynes punt 38 yards to the LAGRANGE15, R.J. Miles return 8 yards to the LAGRANGE23, (L. Gunn).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE23</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">23 plays, 0 yards, 3:52 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 07:30</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE23</td>
+                            
+                            <td>Kent Gibson rush for 2 yards to the LAGRANGE25, (Jeffery Steele).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at LAGRANGE25</td>
+                            
+                            <td>Ed Russ rush for 2 yards to the LAGRANGE27, (Cory Corcoran).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at LAGRANGE27</td>
+                            
+                            <td>Ed Russ rush for 9 yards to the LAGRANGE361ST DOWN LAGRANGE, (Connor Shannon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE36</td>
+                            
+                            <td>Ed Russ rush for 1 yard to the LAGRANGE37, (R. Nelson; Jake Robertson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at LAGRANGE37</td>
+                            
+                            <td>Kent Gibson rush for 3 yards to the LAGRANGE40, (Cameron Budzius).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at LAGRANGE40</td>
+                            
+                            <td>Ed Russ pass incomplete  to Marquius Young.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at LAGRANGE40</td>
+                            
+                            <td>David Harber punt 45 yards to the BSC15, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC15</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">16 plays, 0 yards, 3:25 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 03:38</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC15</td>
+                            
+                            <td>Jimmy Stainback pass complete  to Aaron Sherrill for 13 yards to the BSC281ST DOWN BSC, (Anthony Cochran).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr2" class="align-center summary"><div class="stats-header">      2nd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC28</td>
+                            
+                            <td>clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC28</td>
+                            
+                            <td>Shawn Morris rush for 0 yard to the BSC28, (Corneil. Harper).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at BSC28</td>
+                            
+                            <td>Jimmy Stainback pass incomplete  to Sam Vermilyea, null.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 10 at BSC28</td>
+                            
+                            <td>Jimmy Stainback sacked for  0 yard to the BSC24,  ( Shaun Nichols).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 14 at BSC24</td>
+                            
+                            <td>Cameron Haynes punt 45 yards to the LAGRANGE31, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE31</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">16 plays, 0 yards, -13:-7 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE31</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at LAGRANGE31</td>
+                            
+                            <td>Ed Russ pass complete  to R.J. Miles for 9 yards to the LAGRANGE40, (Jeffery Steele).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at LAGRANGE40</td>
+                            
+                            <td>Kent Gibson rush for 2 yards to the LAGRANGE421ST DOWN LAGRANGE, (Nick Gordon; R. Nelson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE42</td>
+                            
+                            <td>Ed Russ pass complete  to R.J. Miles for 7 yards to the LAGRANGE49, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at LAGRANGE49</td>
+                            
+                            <td>Ed Russ rush for 5 yards to the BSC461ST DOWN LAGRANGE, (Andrew Shannon; Connor Shannon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC46</td>
+                            
+                            <td>Jo Jo Sweet rush for 6 yards to the BSC40, (Ty Keenum).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at BSC40</td>
+                            
+                            <td>Marquius Young rush for loss of 1 yard to the BSC41, (A. Birdsong; Devante Smith).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at BSC41</td>
+                            
+                            <td>Ed Russ pass incomplete  to Marquius Young.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 5 at BSC41</td>
+                            
+                            <td>David Harber punt 41 yards to the BSC00, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">19 plays, 0 yards, 3:35 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 13:20</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC20</td>
+                            
+                            <td>Shawn Morris rush for 1 yard to the BSC21, (Andre Carter; Shaun Nichols).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at BSC21</td>
+                            
+                            <td>Jimmy Stainback pass complete  to Shawn Morris for 79 yards to the LAGRANGE001ST DOWN BSC, clock 08:56.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Ryan Laughlin kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Grant Talbert kickoff loss of 5 yard to the LAGRANGE05, Aaron Duncan return 8 yards to the LAGRANGE13, (L. Gunn; Austin Hansard).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 08:56</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE13</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">13 plays, 0 yards, 0:57 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 08:56</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE13</td>
+                            
+                            <td>Ed Russ rush for 4 yards to the LAGRANGE17, (Zack Lambert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at LAGRANGE17</td>
+                            
+                            <td>Ed Russ pass incomplete  to Jo Jo Sweet, null.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at LAGRANGE17</td>
+                            
+                            <td>Ed Russ pass incomplete  to R.J. Miles.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at LAGRANGE17</td>
+                            
+                            <td>David Harber punt 32 yards to the LAGRANGE49, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE49</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">10 plays, 0 yards, 0:58 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 08:48</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE49</td>
+                            
+                            <td>Issac Nichols rush for 3 yards to the LAGRANGE46, (Andre Carter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at LAGRANGE46</td>
+                            
+                            <td>Jimmy Stainback pass incomplete  to Michael Cowan.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at LAGRANGE46</td>
+                            
+                            <td>Jimmy Stainback rush for loss of 3 yard to the LAGRANGE49, (Sean McNamee; Andre Carter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 10 at LAGRANGE49</td>
+                            
+                            <td>Cameron Haynes punt 48 yards to the LAGRANGE01, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE01</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">10 plays, 0 yards, 1:28 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 07:50</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE01</td>
+                            
+                            <td>Ed Russ rush for 2 yards to the LAGRANGE03, (Jacob Palmer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at LAGRANGE03</td>
+                            
+                            <td>Kent Gibson rush for 3 yards to the LAGRANGE06, (Nick Gordon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at LAGRANGE06</td>
+                            
+                            <td>Ed Russ pass complete  to R.J. Miles for 9 yards to the LAGRANGE151ST DOWN LAGRANGE, (Jeffery Steele).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE15</td>
+                            
+                            <td>Ed Russ rush for 1 yard to the LAGRANGE16, (Jake Robertson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at LAGRANGE16</td>
+                            
+                            <td>Michael Jones rush for 0 yard to the LAGRANGE161ST DOWN LAGRANGE, (Connor Shannon), PENALTY BSC personal foul(TEAM) loss of 15 yard to the LAGRANGE31.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE31</td>
+                            
+                            <td>1st and 10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE31</td>
+                            
+                            <td>Ed Russ pass incomplete  to Jo Jo Sweet, (Wesley Hansard).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at LAGRANGE31</td>
+                            
+                            <td>Ed Russ sacked for  0 yard to the LAGRANGE22,  ( Cory Corcoran).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 19 at LAGRANGE22</td>
+                            
+                            <td>Ed Russ pass incomplete  to Ezekiel Grogan, (Jeffery Steele), .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 19 at LAGRANGE22</td>
+                            
+                            <td>David Harber punt 34 yards to the BSC44, Tyler Johnson return 10 yards to the LAGRANGE46, (Chris Vernet).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE46</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">26 plays, 0 yards, 4:2 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 06:22</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE46</td>
+                            
+                            <td>Jimmy Stainback pass complete  to Marquis Pratt for 11 yards to the LAGRANGE351ST DOWN BSC, (Chris Vernet).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE35</td>
+                            
+                            <td>Jimmy Stainback rush for 6 yards to the LAGRANGE29, (Sean McNamee).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at LAGRANGE29</td>
+                            
+                            <td>Jimmy Stainback rush for 3 yards to the LAGRANGE26, (Anthony Cochran).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at LAGRANGE26</td>
+                            
+                            <td>Timeout Birmingham-Southern, clock 01:20.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at LAGRANGE26</td>
+                            
+                            <td>Jimmy Stainback rush for loss of 4 yard to the LAGRANGE30, fumble by  recovered by BSC Jimmy Stainback at LAGRANGE30.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 5 at LAGRANGE30</td>
+                            
+                            <td>Timeout Birmingham-Southern, clock 01:08.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 5 at LAGRANGE30</td>
+                            
+                            <td>PENALTY LAGRANGE offise defense(TM) loss of 5 yard to the LAGRANGE25.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE25</td>
+                            
+                            <td>Jimmy Stainback intercepted by Andre Carter for 16 yards at the LAGRANGE091ST DOWN BSC, Andre Carter return 15 yards to the LAGRANGE40, out-of-bounds, PENALTY LAGRANGE pass interference(TM) loss of 30 yard to the LAGRANGE10, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE10</td>
+                            
+                            <td>Mitch Gutierrez rush for loss of 10 yard to the LAGRANGE00, clock 00:49.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>P.G. Standard kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Brandon Johnson kickoff 0 yard to the LAGRANGE00, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 00:49</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">28 plays, 0 yards, 1:31 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 00:49</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE00</td>
+                            
+                            <td>Cameron Budzius pass incomplete  to Nolan Griffin.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>LaGrange 0, Birmingham-Southern 6</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at LAGRANGE00</td>
+                            
+                            <td>William Weller rush for loss of 32 yard to the LAGRANGE32, (Emory Wingard).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 42 at LAGRANGE32</td>
+                            
+                            <td>clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr3" class="align-center summary"><div class="stats-header">      3rd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 42 at LAGRANGE32</td>
+                            
+                            <td>clock 15:00, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Will Jeffcoat kickoff 50 yards to the BSC15, Sam Vermilyea return 9 yards to the BSC24, (Kent Gibson), PENALTY LAGRANGE offise defense(TM) loss of 46 yard to the LAGRANGE30, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Timothy Howard kickoff loss of 56 yard to the BSC14, Hunter Blackmon return loss of 16 yard to the BSC30, (Ryan Laughlin; 1).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC30</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">19 plays, 0 yards, -13:-56 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC30</td>
+                            
+                            <td>Scott Green rush for loss of 3 yard to the BSC33, (Quin Snipes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 13 at BSC33</td>
+                            
+                            <td>Mitch Gutierrez pass complete  to Hunter Blackmon for loss of 30 yard to the LAGRANGE37, (Tyson Beacham).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 43 at LAGRANGE37</td>
+                            
+                            <td>Scott Green rush for 0 yard to the LAGRANGE37, (Marquis Pratt; Anderson Porter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 43 at LAGRANGE37</td>
+                            
+                            <td>Mitch Gutierrez pass incomplete  to Brandon Jones1ST DOWN LAGRANGE, (Conner Young).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE37</td>
+                            
+                            <td>Jimmy Stainback rush for loss of 3 yard to the LAGRANGE40, (Quentav. Head).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 13 at LAGRANGE40</td>
+                            
+                            <td>Cameron Haynes punt 21 yards to the LAGRANGE19, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE19</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">15 plays, 0 yards, 2:8 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 14:45</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE19</td>
+                            
+                            <td>Ed Russ rush for 3 yards to the LAGRANGE22, (Austin Hansard).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at LAGRANGE22</td>
+                            
+                            <td>Kent Gibson rush for 11 yards to the LAGRANGE331ST DOWN LAGRANGE, (Andrew Shannon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE33</td>
+                            
+                            <td>Ed Russ pass incomplete  to Marquius Young.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at LAGRANGE33</td>
+                            
+                            <td>Ed Russ pass complete  to R.J. Miles for 9 yards to the LAGRANGE42, (Jeffery Steele).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at LAGRANGE42</td>
+                            
+                            <td>Jo Jo Sweet rush for 3 yards to the LAGRANGE451ST DOWN LAGRANGE, (Matthew Weigel).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE45</td>
+                            
+                            <td>Ed Russ pass incomplete  to TM, (Dre Buford).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at LAGRANGE45</td>
+                            
+                            <td>Ed Russ pass complete  to John John Hill for 26 yards to the BSC291ST DOWN LAGRANGE.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC29</td>
+                            
+                            <td>Ed Russ pass incomplete  to John John Hill.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at BSC29</td>
+                            
+                            <td>Ed Russ rush for 7 yards to the BSC22, (Cameron Budzius).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 3 at BSC22</td>
+                            
+                            <td>Kent Gibson rush for 6 yards to the BSC161ST DOWN LAGRANGE, (Cameron Budzius; Andrew Shannon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC16</td>
+                            
+                            <td>Ed Russ sacked for  0 yard to the BSC17,  ( A. Birdsong).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at BSC17</td>
+                            
+                            <td>Kent Gibson rush for 4 yards to the BSC13, (Cameron Budzius).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at BSC13</td>
+                            
+                            <td>Ed Russ pass complete  to Kent Gibson for 13 yards to the BSC001ST DOWN LAGRANGE, clock 07:54.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Will Jeffcoat kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Will Jeffcoat kickoff loss of 9 yard to the BSC09, Sam Vermilyea return 16 yards to the BSC25, (Connor McNamee; Scott Chewning).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 07:54</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC25</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">30 plays, 0 yards, 4:50 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 07:54</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC25</td>
+                            
+                            <td>Jimmy Stainback rush for 36 yards to the LAGRANGE391ST DOWN BSC, (Anthony Cochran).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE39</td>
+                            
+                            <td>Shawn Morris rush for 20 yards to the LAGRANGE191ST DOWN BSC, (Scott Chewning; Tyler Johnson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE19</td>
+                            
+                            <td>Jimmy Stainback pass complete  to Sam Vermilyea for 19 yards to the LAGRANGE001ST DOWN BSC, clock 06:42.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>LaGrange 3, Birmingham-Southern 9</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Ryan Laughlin kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Grant Talbert kickoff 0 yard to the LAGRANGE00, Kent Gibson return 23 yards to the LAGRANGE23, (L. Gunn).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 06:42</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE23</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">13 plays, 0 yards, 1:12 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 06:42</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE23</td>
+                            
+                            <td>Kent Gibson rush for loss of 7 yard to the LAGRANGE16, fumble by  recovered by LAGRANGE Kent Gibson at LAGRANGE16.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 17 at LAGRANGE16</td>
+                            
+                            <td>Ed Russ pass complete  to Jo Jo Sweet for 7 yards to the LAGRANGE23, (Andrew Shannon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 10 at LAGRANGE23</td>
+                            
+                            <td>Ed Russ intercepted by Jeffery Steele for 12 yards at the LAGRANGE351ST DOWN LAGRANGE, Jeffery Steele return 10 yards to the LAGRANGE13, (Ed Russ), PENALTY BSC (TEAM) loss of 10 yard to the LAGRANGE23, 1st and 10, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE23</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">12 plays, 0 yards, 1:19 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 06:35</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE23</td>
+                            
+                            <td>Shawn Morris rush for 23 yards to the LAGRANGE001ST DOWN BSC, clock 05:04.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>LaGrange 3, Birmingham-Southern 12</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Ryan Laughlin kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Grant Talbert kickoff 0 yard to the LAGRANGE00, Kent Gibson return 27 yards to the LAGRANGE27, (Colton Dunn).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 05:04</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE27</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">9 plays, 0 yards, 0:20 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 05:04</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE27</td>
+                            
+                            <td>Kent Gibson rush for loss of 4 yard to the LAGRANGE23, (Austin Hansard).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 14 at LAGRANGE23</td>
+                            
+                            <td>Ed Russ pass complete  to Jo Jo Sweet for 8 yards to the LAGRANGE31, (Andrew Shannon), PENALTY BSC offise defense(TEAM) 3 yards to the LAGRANGE28, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 9 at LAGRANGE28</td>
+                            
+                            <td>Ed Russ rush for 24 yards to the BSC481ST DOWN LAGRANGE, (Andrew Shannon).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC48</td>
+                            
+                            <td>Jo Jo Sweet rush for 4 yards to the BSC44, (Jake Robertson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at BSC44</td>
+                            
+                            <td>Ed Russ pass incomplete  to John John Hill.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at BSC44</td>
+                            
+                            <td>Ed Russ pass incomplete  to Daniel Staples.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at BSC44</td>
+                            
+                            <td>David Harber punt 11 yards to the BSC33, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC33</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">16 plays, 0 yards, 2:34 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 04:56</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC33</td>
+                            
+                            <td>Jimmy Stainback rush for 7 yards to the BSC40, (P.G. Standard; Sean McNamee).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at BSC40</td>
+                            
+                            <td>Jimmy Stainback rush for 7 yards to the BSC471ST DOWN BSC, (Scott Chewning).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC47</td>
+                            
+                            <td>Jimmy Stainback pass complete  to Tyler Johnson for loss of 3 yard to the BSC44, (Anthony Cochran).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 13 at BSC44</td>
+                            
+                            <td>Jimmy Stainback rush for 7 yards to the LAGRANGE49, (Quentav. Head).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr4" class="align-center summary"><div class="stats-header">       4th 
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at LAGRANGE49</td>
+                            
+                            <td>clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at LAGRANGE49</td>
+                            
+                            <td>Jimmy Stainback pass complete  to Marquis Pratt for 16 yards to the LAGRANGE331ST DOWN BSC, (Arno. Jefferson), PENALTY BSC holding(TEAM) loss of 10 yard to the LAGRANGE43.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE43</td>
+                            
+                            <td>1st and 10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE43</td>
+                            
+                            <td>Joseph Moultrie rush for 4 yards to the LAGRANGE39, (Arno. Jefferson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at LAGRANGE39</td>
+                            
+                            <td>Joseph Moultrie rush for loss of 4 yard to the LAGRANGE43, (Daniel Garrett).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 10 at LAGRANGE43</td>
+                            
+                            <td>Tyson Beacham pass incomplete  to Tyler Johnson.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 10 at LAGRANGE43</td>
+                            
+                            <td>Cameron Haynes punt 43 yards to the LAGRANGE00, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">26 plays, 0 yards, -10:-38 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE00</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE20</td>
+                            
+                            <td>Ed Russ sacked for  0 yard to the LAGRANGE19,  ( Cory Corcoran, Paden Gaines).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 11 at LAGRANGE19</td>
+                            
+                            <td>Ed Russ pass incomplete  to Jo Jo Sweet.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 11 at LAGRANGE19</td>
+                            
+                            <td>Ed Russ pass complete  to Marquius Young for 19 yards to the LAGRANGE381ST DOWN LAGRANGE, (L. Gunn).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE38</td>
+                            
+                            <td>Ed Russ pass complete  to John John Hill for 4 yards to the LAGRANGE42.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at LAGRANGE42</td>
+                            
+                            <td>Ed Russ pass incomplete  to Reece Powell, (Zac Phillips).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at LAGRANGE42</td>
+                            
+                            <td>Ed Russ pass incomplete  to Kent Gibson.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at LAGRANGE42</td>
+                            
+                            <td>David Harber punt 32 yards to the BSC26, Tyler Johnson return 5 yards to the BSC31, (Corneil. Harper).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC31</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">17 plays, 0 yards, 2:8 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 13:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC31</td>
+                            
+                            <td>Joseph Moultrie rush for 69 yards to the LAGRANGE001ST DOWN BSC, clock 10:37.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Bee Hall kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Grant Talbert kickoff loss of 7 yard to the LAGRANGE07, Kent Gibson return 21 yards to the LAGRANGE28, (William Weller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 10:37</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE28</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">9 plays, 0 yards, 0:24 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 10:37</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE28</td>
+                            
+                            <td>Ed Russ pass complete  to Cody Darracott for 12 yards to the LAGRANGE401ST DOWN LAGRANGE, (L. Gunn; A. Birdsong).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE40</td>
+                            
+                            <td>Ed Russ pass complete  to Cody Darracott for 5 yards to the LAGRANGE45, (L. Gunn).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at LAGRANGE45</td>
+                            
+                            <td>Ed Russ pass incomplete  to Cody Darracott.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at LAGRANGE45</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 5 at LAGRANGE45</td>
+                            
+                            <td>Ed Russ rush for 2 yards to the LAGRANGE471ST DOWN LAGRANGE, (Austin Hansard).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE47</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">10 plays, 0 yards, 1:30 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 10:28</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE47</td>
+                            
+                            <td>John White rush for 5 yards to the LAGRANGE42, (Nick Raszeja).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at LAGRANGE42</td>
+                            
+                            <td>Issac Nichols rush for loss of 2 yard to the LAGRANGE44, fumble forced by Andre Carter, fumble by  recovered by BSC John White at LAGRANGE44.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at LAGRANGE44</td>
+                            
+                            <td>William Weller rush for loss of 6 yard to the LAGRANGE50, (Scott Chewning).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 13 at LAGRANGE50</td>
+                            
+                            <td>Cameron Haynes punt 50 yards to the LAGRANGE00, , PENALTY BSC holding(TEAM) loss of 60 yard to the BSC40, .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC40</td>
+                            
+                            <td>Cameron Tootle punt loss of 35 yard to the LAGRANGE25, William Weller return loss of 4 yard to the LAGRANGE29.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE29</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">16 plays, 0 yards, 2:12 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 08:58</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE29</td>
+                            
+                            <td>William Weller rush for loss of 5 yard to the LAGRANGE34, (Andre Carter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 15 at LAGRANGE34</td>
+                            
+                            <td>William Weller rush for loss of 12 yard to the LAGRANGE46, (Nick Simmons; Michael May).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 27 at LAGRANGE46</td>
+                            
+                            <td>10 rush for loss of 1 yard to the LAGRANGE47, (Shaun Nichols).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 28 at LAGRANGE47</td>
+                            
+                            <td>Cameron Budzius rush for loss of 11 yard to the BSC421ST DOWN BSC, (Michael May).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC42</td>
+                            
+                            <td>Ed Russ pass complete  to Cody Darracott for 9 yards to the BSC33, (Chad King).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 1 at BSC33</td>
+                            
+                            <td>Michael Jones rush for 9 yards to the BSC241ST DOWN LAGRANGE, (Cameron Budzius).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC24</td>
+                            
+                            <td>Ed Russ pass incomplete  to John John Hill.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at BSC24</td>
+                            
+                            <td>Ed Russ pass complete  to John John Hill for 17 yards to the BSC071ST DOWN LAGRANGE, (L. Gunn).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at BSC07</td>
+                            
+                            <td>Michael Jones rush for 7 yards to the BSC00, clock 06:46.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>LaGrange 6, Birmingham-Southern 15</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Will Jeffcoat kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at BSC00</td>
+                            
+                            <td>Timeout Birmingham-Southern, clock 02:29.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Drake Nahrwold kickoff loss of 55 yard to the LAGRANGE45, on-side kick, , .</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 02:29</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE45</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">28 plays, 0 yards, 4:21 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Birmingham-Southern at 02:29</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE45</td>
+                            
+                            <td>Conner Young sacked for  0 yard to the BSC44,  ( Corneil. Harper), PENALTY BSC personal foul(TEAM) loss of 15 yard to the BSC29.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 36 at BSC29</td>
+                            
+                            <td>1st and 36.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 36 at BSC29</td>
+                            
+                            <td>William Weller rush for 1 yard to the BSC30, (Andre Carter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 35 at BSC30</td>
+                            
+                            <td>Timeout LaGrange College, clock 01:55.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 35 at BSC30</td>
+                            
+                            <td>Issac Nichols rush for 21 yards to the LAGRANGE49, (Darius Wynn).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 14 at LAGRANGE49</td>
+                            
+                            <td>Timeout LaGrange College, clock 01:43.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 14 at LAGRANGE49</td>
+                            
+                            <td>Cameron Haynes punt 48 yards to the LAGRANGE01, Cody Darracott return 11 yards to the LAGRANGE12, (L. Gunn).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE12</td>
+                            
+                            <td></td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">21 plays, 0 yards, 0:58 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">LaGrange at 01:43</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at LAGRANGE12</td>
+                            
+                            <td>Michael Jones rush for 2 yards to the LAGRANGE14, (Paden Gaines).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at LAGRANGE14</td>
+                            
+                            <td>Ed Russ pass incomplete  to John John Hill.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at LAGRANGE14</td>
+                            
+                            <td>Ed Russ rush for 5 yards to the LAGRANGE19, (Paden Gaines).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 3 at LAGRANGE19</td>
+                            
+                            <td>clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                     </table>
+    </div>
+ 
+
+     
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        if (!$('.stats-tabs li.active').length) {
+            if (history.replaceState) {
+                history.replaceState({}, '', '?view=' + $('.stats-tabs li:first').addClass('active').children('a').data('view'));
+            } else {
+                $('.stats-tabs li:first').addClass('active');
+            }
+        }
+    })
+</script>
+
+<!-- from: generic theme -->
+
+<!-- rum footer -->
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"applicationID":"1004718","applicationTime":272,"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"a8324e80d1","transactionName":"MgcAZENYXhJYVkFdXQtNJFldTVUTFnFaWVMMDEJeUFRVQV9cWUBXFw==","agent":"","errorBeacon":"bam.nr-data.net"}</script>
+
+
+</body>
+</html>

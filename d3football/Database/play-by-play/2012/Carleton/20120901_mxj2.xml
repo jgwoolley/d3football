@@ -1,0 +1,3872 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta name="robots" content="NOINDEX" />
+<link rel="stylesheet" href="/info/boilerplate.css" type="text/css" />
+<!-- rum header -->
+
+<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQ4CWFNbGwIAVFVVBgk="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(12),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(c){try{i("ierr",[c,(new Date).getTime(),!0])}catch(s){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(13),c=t("ee"),s=t("loader"),f=window.onerror,u=!1,d=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(5),t(4),"addEventListener"in window&&t(3),s.xhrWrappable&&t(6),u=!0)}c.on("fn-start",function(t,e,n){u&&(d+=1)}),c.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),c.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),c.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(14)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],4:[function(t,e,n){var r=t("ee").get("raf"),o=t(14)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],5:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(14)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],6:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,v,"fn-",c)}function i(t){y.push(t),h&&(w=-w,b.data=w)}function a(){for(var t=0;t<y.length;t++)r([],y[t]);y.length&&(y=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(3);var f=t("ee"),u=f.get("xhr"),d=t(14)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",v=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],y=[];e.exports=u;var g=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(p,g),g.prototype=p.prototype,d.inPlace(g.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var w=1,b=document.createTextNode(w);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],7:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return h(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(8),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(11),h=t(10),m=window.XMLHttpRequest;a.features.xhr=!0,t(6),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=h(r);i&&(n.txSize=i)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var a=0;a<d;a++)e.addEventListener(u[a],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],8:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],9:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(12),c=t(13),s=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var u=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(u,function(t,e){f[e]=o(d+e,!0,"api")}),f.addPageAction=o(d+"addPageAction",!0),f.setCurrentRouteName=o(d+"routeName",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var p=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{s.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){p[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],10:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],11:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],12:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],13:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],14:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(13),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){l([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o)}catch(a){l([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){l([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function l(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o){if(!l.aborted){t&&t(n,r,o);for(var i=e(o),a=h(n),c=a.length,s=0;s<c;s++)a[s].apply(i,r);var f=u[g[n]];return f&&f.push([w,n,r,i]),i}}function p(t,e){y[t]=h(t).concat(e)}function h(t){return y[t]||[]}function m(t){return d[t]=d[t]||o(n)}function v(t,e){f(t,function(t,n){e=e||"feature",g[n]=e,e in u||(u[e]=[])})}var y={},g={},w={on:p,emit:n,get:m,listeners:h,context:e,buffer:v,abort:a,aborted:!1};return w}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var c="nr@context",s=t("gos"),f=t(12),u={},d={},l=e.exports=o();l.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!b++){var t=w.info=NREUM.info,e=d.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();s(y,function(e,n){t[e]||(t[e]=n)}),c("mark",["onload",a()],null,"api");var n=d.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var c=t("handle"),s=t(12),f=t("ee"),u=window,d=u.document,l="addEventListener",p="attachEvent",h=u.XMLHttpRequest,m=h&&h.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:h,REQ:u.Request,EV:u.Event,PR:u.Promise,MO:u.MutationObserver},t(9);var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1016.min.js"},g=h&&m&&m[l]&&!/CriOS/.test(navigator.userAgent),w=e.exports={offset:a(),origin:v,features:{},xhrWrappable:g};d[l]?(d[l]("DOMContentLoaded",i,!1),u[l]("load",r,!1)):(d[p]("onreadystatechange",o),u[p]("onload",r)),c("mark",["firstbyte",a()],null,"api");var b=0},{}]},{},["loader",2,7]);</script>
+
+</head>
+<body onload="print()" class="printer-body">
+<div class="align-center">
+    <div>Carleton College vs. Grinnell College</div>
+    <div>September 1, 2012, 1 pm</div>
+    <div>at Grinnell, Iowa | Rosenbloom Field</div>
+    <div></div>
+</div>
+
+<div class="stats-wrapper clearfix">
+
+
+<table>
+  <tr>
+         <td width="50%" align="center">
+          <span class="stats-header">Carleton</span>
+          <br /><span class="stats-header">20</span>
+     </td>
+         <td width="50%" align="center">
+          <span class="stats-header">Grinnell</span>
+          <br /><span class="stats-header">14</span>
+     </td>
+      </tr>
+</table>
+
+<div class="stats-fullbox clearfix">
+<table>
+ <tr>
+  <th class="align-left">Scoring</th>
+      <th style="width:40px; text-align:center;">                                        1
+                        </th>
+      <th style="width:40px; text-align:center;">                                        2
+                        </th>
+      <th style="width:40px; text-align:center;">                                        3
+                        </th>
+      <th style="width:40px; text-align:center;">                                        4
+                        </th>
+      <th style="width:40px; text-align:center;">                                        OT
+                        </th>
+    
+      <th style="width:60px">Final</th>
+   </tr>
+
+
+ <tr>
+  <td>
+      Carleton
+                (1-0)
+        </td>
+    <td class="align-center">0</td>
+    <td class="align-center">0</td>
+    <td class="align-center">7</td>
+    <td class="align-center">7</td>
+    <td class="align-center">6</td>
+    <td class="align-center">20</td>
+ </tr>
+ <tr>
+  <td>
+      Grinnell
+                (0-1)
+        </td>
+    <td class="align-center">14</td>
+    <td class="align-center">0</td>
+    <td class="align-center">0</td>
+    <td class="align-center">0</td>
+    <td class="align-center">0</td>
+    <td class="align-center">14</td>
+ </tr>
+
+</table>
+</div>
+
+
+    <div class="stats-tabs clearfix">
+        <ul class="clearfix">
+          <li ><a href="/seasons/2012/boxscores/20120901_mxj2.xml" data-view="boxscore">Box Score</a>
+          <li  class="active" ><a href="/seasons/2012/boxscores/20120901_mxj2.xml?view=plays" data-view="plays" id="pbp">Play by Play</a></li>          <li ><a href="/seasons/2012/boxscores/20120901_mxj2.xml?view=drives" data-view="drives">Drive Summary</a></li>          <li ><a href="/seasons/2012/boxscores/20120901_mxj2.xml?view=starters" data-view="starters">Starters</a></li>          <li ><a href="/seasons/2012/boxscores/20120901_mxj2.xml?view=participation" data-view="participation">Participation</a></li>
+          <li><a href="/seasons/2012/boxscores/20120901_mxj2.xml?tmpl=fbxml-monospace-template" target="_blank">Coach's View</a></li>
+        </ul>
+    </div>
+
+
+
+
+
+
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+
+
+
+                <div class="stats-fullbox clearfix">
+        <table>
+                                    <tr>
+                <td colspan="2">
+                    <strong>Quarters: </strong>
+                                                                    <a href="#qtr1">      1st
+      </a>
+                                             |                         <a href="#qtr2">      2nd
+      </a>
+                                             |                         <a href="#qtr3">      3rd
+      </a>
+                                             |                         <a href="#qtr4">       4th 
+      </a>
+                                             |                         <a href="#qtr5">      OT
+      </a>
+                                    </td>
+            </tr>
+                                                                 <tr><td colspan="2" id="qtr1" class="align-center summary"><div class="stats-header">      1st
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR35</td>
+                            
+                            <td>GC ball on GC35.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Graham Fisher kickoff 65 yards to the CAR0, touchback.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR25</td>
+                            
+                            <td>Jordan Butler rush for 3 yards to the CAR28 (David Ternes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at CAR28</td>
+                            
+                            <td>Jordan Butler rush for 2 yards to the CAR30 (Brian Taylor;Rich. Renteria).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at CAR30</td>
+                            
+                            <td>Timeout Carleton College, clock 13:52.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at CAR30</td>
+                            
+                            <td>Conor Lynch pass incomplete to Brian Frett (David Ternes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 5 at CAR30</td>
+                            
+                            <td>Alexander Polk punt 30 yards to the GC40, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 5 yards, 1:24 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 13:36</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC40</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 13:36.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC40</td>
+                            
+                            <td>Sam Poulos pass incomplete to Cody Weber.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at GC40</td>
+                            
+                            <td>Sam Poulos pass complete to Dalton Davies for 8 yards to the GC48 (Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 2 at GC48</td>
+                            
+                            <td>Tj Schaid rush for 4 yards to the CAR48, 1ST DOWN GC (Nick Herringer;Andrew Wolter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR48</td>
+                            
+                            <td>Tj Schaid rush for 3 yards to the CAR45 (Zach Heinrich;Mike Elder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at CAR45</td>
+                            
+                            <td>Timeout Grinnell College, clock 11:36.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at CAR45</td>
+                            
+                            <td>Sam Poulos pass complete to Dalton Davies for 2 yards to the CAR43 (Mike Elder;Luke Reppe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at CAR43</td>
+                            
+                            <td>Sam Poulos pass complete to Cody Weber for 4 yards to the CAR39 (Paul Hoffer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 1 at CAR39</td>
+                            
+                            <td>Tj Schaid rush for 6 yards to the CAR33, 1ST DOWN GC (Alexander Polk).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR33</td>
+                            
+                            <td>Tj Schaid rush for 6 yards to the CAR27 (Paul Hoffer;Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at CAR27</td>
+                            
+                            <td>Sam Poulos pass complete to Cody Weber for 27 yards to the CAR0, 1ST DOWN GC, TOUCHDOWN, clock 08:50.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Daniel Munger kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Carleton 0, Grinnell 7</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">9 plays, 60 yards, 4:46 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Graham Fisher kickoff 65 yards to the CAR0, touchback.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 08:50</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR25</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 08:50.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR25</td>
+                            
+                            <td>Jordan Butler rush for 1 yard to the CAR26 (Brian Taylor;David Ternes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at CAR26</td>
+                            
+                            <td>Conor Lynch pass incomplete to John Baker, dropped pass.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 9 at CAR26</td>
+                            
+                            <td>PENALTY CAR delay of game 5 yards to the CAR21.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 14 at CAR21</td>
+                            
+                            <td>Conor Lynch rush for 13 yards to the CAR34 (Kevin Hwang;Drew Blumberg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 1 at CAR34</td>
+                            
+                            <td>PENALTY CAR delay of game 5 yards to the CAR29.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at CAR29</td>
+                            
+                            <td>Alexander Polk punt 35 yards to the GC36, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">3 plays, 4 yards, 1:50 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 07:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC36</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 07:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC36</td>
+                            
+                            <td>Tj Schaid rush for 8 yards to the GC44 (Jonathan Rowe;Zach Heinrich).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 2 at GC44</td>
+                            
+                            <td>Ba. Morrissette rush for 7 yards to the CAR49, 1ST DOWN GC (Mike Elder;Luke Reppe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR49</td>
+                            
+                            <td>Tj Schaid rush for 5 yards to the CAR44 (Paul Hoffer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at CAR44</td>
+                            
+                            <td>Sam Poulos pass incomplete to Max Jacobson (Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at CAR44</td>
+                            
+                            <td>Tj Schaid rush for 1 yard to the CAR43 (Caleb Hyde).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 4 at CAR43</td>
+                            
+                            <td>Sam Poulos pass incomplete to Cody Weber.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">6 plays, 21 yards, 2:34 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 04:26</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR43</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 04:26.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR43</td>
+                            
+                            <td>Conor Lynch pass incomplete to Anthony Kemper.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CAR43</td>
+                            
+                            <td>John Baker rush for loss of 2 yards to the CAR41 (Brian Taylor).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 12 at CAR41</td>
+                            
+                            <td>Conor Lynch pass intercepted by Drew Blumberg at the GC49, Drew Blumberg return 12 yards to the CAR39 (Cole Rystedt).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, -2 yards, 0:41 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 03:45</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR39</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 03:45.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR39</td>
+                            
+                            <td>Tj Schaid rush for 9 yards to the CAR30, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 1 at CAR30</td>
+                            
+                            <td>Ba. Morrissette rush for 2 yards to the CAR28, 1ST DOWN GC (Zach Heinrich;Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR28</td>
+                            
+                            <td>Sam Poulos pass complete to Cody Weber for 28 yards to the CAR0, 1ST DOWN GC, TOUCHDOWN, clock 02:33.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Daniel Munger kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Carleton 0, Grinnell 14</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 39 yards, 1:12 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Graham Fisher kickoff 65 yards to the CAR0, touchback.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 02:32</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR25</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 02:32.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR25</td>
+                            
+                            <td>Conor Lynch pass incomplete to Anthony Kemper (Max Keller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CAR25</td>
+                            
+                            <td>Conor Lynch pass complete to C.J. Dale for 13 yards to the CAR38, 1ST DOWN CAR (Drew Blumberg;Colton Feller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR38</td>
+                            
+                            <td>Jordan Butler rush for no gain to the CAR38 (David Ternes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CAR38</td>
+                            
+                            <td>Conor Lynch sacked for loss of 2 yards to the CAR36 (Ki Harris;Kevin Hwang).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 12 at CAR36</td>
+                            
+                            <td>Conor Lynch pass incomplete to Chase Gottschk.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 12 at CAR36</td>
+                            
+                            <td>PENALTY CAR holding declined.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 12 at CAR36</td>
+                            
+                            <td>Alexander Polk punt 18 yards to the GC46, Kevin Hwang return 4 yards to the 50 yardline, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">5 plays, 11 yards, 2:01 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 00:31</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC50</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 00:31.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC50</td>
+                            
+                            <td>Tj Schaid rush for 2 yards to the CAR48 (Luke Reppe;Jonathan Rowe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr2" class="align-center summary"><div class="stats-header">      2nd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at CAR48</td>
+                            
+                            <td>Start of 2nd quarter, clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at CAR48</td>
+                            
+                            <td>Tj Schaid rush for 1 yard to the CAR47 (Luke Reppe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at CAR47</td>
+                            
+                            <td>Sam Poulos pass complete to Cody Weber for 26 yards to the CAR21, 1ST DOWN GC (Luke Reppe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR21</td>
+                            
+                            <td>Ba. Morrissette rush for 2 yards to the CAR19 (Caleb Hyde;Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 8 at CAR19</td>
+                            
+                            <td>Sam Poulos rush for 1 yard to the CAR18 (Zach Heinrich).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at CAR18</td>
+                            
+                            <td>Tj Schaid rush for loss of 3 yards to the CAR21 (Zach Heinrich).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 10 at CAR21</td>
+                            
+                            <td>Daniel Munger field goal attempt from 38 MISSED - wide left, spot at CAR21, clock 11:35.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">7 plays, 29 yards, 3:56 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 11:35</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR21</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 11:35.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR21</td>
+                            
+                            <td>Conor Lynch pass incomplete to Anthony Kemper, dropped pass.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CAR21</td>
+                            
+                            <td>Cory Shender rush for loss of 2 yards to the CAR19 (David Ternes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 12 at CAR19</td>
+                            
+                            <td>Conor Lynch pass complete to John Baker for 11 yards to the CAR30 (David Ternes;Rich. Renteria).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 1 at CAR30</td>
+                            
+                            <td>Alexander Polk punt 38 yards to the GC32, Kevin Hwang return 0 yards to the GC32, fumble by Kevin Hwang recovered by GC Kevin Hwang at GC33, Kevin Hwang for no gain to the GC33.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 9 yards, 1:41 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 09:54</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC33</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 09:54, GC ball on GC33.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC33</td>
+                            
+                            <td>Sam Poulos pass incomplete to Cody Weber.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at GC33</td>
+                            
+                            <td>Tj Schaid rush for no gain to the GC33 (Luke Reppe;Mike Elder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 10 at GC33</td>
+                            
+                            <td>Sam Poulos pass incomplete to Tj Schaid, dropped pass.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 10 at GC33</td>
+                            
+                            <td>Timeout Grinnell College, clock 09:01.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 10 at GC33</td>
+                            
+                            <td>Graham Fisher punt 31 yards to the CAR36, fair catch by Greg Erlandson.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 0 yards, 1:00 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 08:54</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR36</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 08:54.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR36</td>
+                            
+                            <td>John Baker rush for 1 yard to the CAR37 (Brian Taylor;Tom Brinkman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at CAR37</td>
+                            
+                            <td>Conor Lynch pass incomplete to C.J. Dale.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 9 at CAR37</td>
+                            
+                            <td>Conor Lynch rush for 3 yards to the CAR40 (Colton Feller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 6 at CAR40</td>
+                            
+                            <td>Alexander Polk pass incomplete.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">4 plays, 4 yards, 1:28 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 07:26</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR40</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 07:26.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR40</td>
+                            
+                            <td>Tj Schaid rush for loss of 2 yards to the CAR42 (Caleb Hyde).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 12 at CAR42</td>
+                            
+                            <td>PENALTY GC holding (Quinn Rosenthal) 10 yards to the GC48.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 22 at GC48</td>
+                            
+                            <td>Tj Schaid rush for 4 yards to the CAR48 (Zach Heinrich;Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 18 at CAR48</td>
+                            
+                            <td>Ba. Morrissette rush for loss of 4 yards to the GC48 (Caleb Hyde).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 22 at GC48</td>
+                            
+                            <td>Graham Fisher punt 22 yards to the CAR30, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">3 plays, -12 yards, 2:21 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 05:05</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR30</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 05:05.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR30</td>
+                            
+                            <td>Jordan Butler rush for loss of 6 yards to the CAR24 (Brian Taylor).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 16 at CAR24</td>
+                            
+                            <td>Jordan Butler rush for 3 yards to the CAR27 (Brian Taylor).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 13 at CAR27</td>
+                            
+                            <td>Conor Lynch pass complete to Anthony Kemper for 39 yards to the GC34, 1ST DOWN CAR (Andrew Clark).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC34</td>
+                            
+                            <td>Jordan Butler rush for loss of 2 yards to the GC36 (Clay. Desjardin).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 12 at GC36</td>
+                            
+                            <td>Conor Lynch pass complete to Brian Frett for 8 yards to the GC28 (Kevin Hwang).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at GC28</td>
+                            
+                            <td>Jordan Butler rush for 1 yard to the GC27 (David Ternes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 3 at GC27</td>
+                            
+                            <td>Conor Lynch pass incomplete to Derek Turner (Drew Blumberg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">7 plays, 43 yards, 2:59 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 02:06</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC27</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 02:06.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC27</td>
+                            
+                            <td>Sam Poulos pass complete to Cody Weber for 20 yards to the GC47, 1ST DOWN GC (Josh Estes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC47</td>
+                            
+                            <td>Sam Poulos rush for 3 yards to the 50 yardline (Zach Heinrich).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at GC50</td>
+                            
+                            <td>Sam Poulos pass complete to Cody Weber for 38 yards to the CAR12, 1ST DOWN GC (Alexander Polk).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR12</td>
+                            
+                            <td>Sam Poulos pass complete to Cody Weber for 7 yards to the CAR5 (Paul Hoffer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 3 at CAR05</td>
+                            
+                            <td>Sam Poulos sacked for loss of 11 yards to the CAR16 (Christian Hansn).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 14 at CAR16</td>
+                            
+                            <td>Timeout Grinnell College, clock 00:48.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 14 at CAR16</td>
+                            
+                            <td>Sam Poulos pass intercepted by Paul Hoffer at the CAR0, Paul Hoffer return 0 yards to the CAR0, touchback.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">6 plays, 57 yards, 1:31 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 00:35</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR20</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 00:35.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR20</td>
+                            
+                            <td>Jordan Butler rush for 3 yards to the CAR23 (Brian Taylor;Tom Brinkman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at CAR23</td>
+                            
+                            <td>Conor Lynch pass intercepted by Drew Blumberg at the GC40, Drew Blumberg return 21 yards to the CAR39 (Eric Wittenburg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">2 plays, 3 yards, 0:35 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 00:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR39</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR39</td>
+                            
+                            <td>End of half, clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">0 plays, 0 yards, 0:00 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Carleton 0, Grinnell 14</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr3" class="align-center summary"><div class="stats-header">      3rd
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR39</td>
+                            
+                            <td>Start of 3rd quarter, clock 15:00, CAR ball on CAR35.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Ted Lozier kickoff 57 yards to the GC8, Andrew Clark return 30 yards to the GC38 (C.J. Dale;Mike Elder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 14:52</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC38</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 14:52.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC38</td>
+                            
+                            <td>Tj Schaid rush for 3 yards to the GC41 (Zach Heinrich).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at GC41</td>
+                            
+                            <td>Tj Schaid rush for 2 yards to the GC43 (Luke Reppe;Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at GC43</td>
+                            
+                            <td>Sam Poulos rush for 10 yards to the CAR47, 1ST DOWN GC.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR47</td>
+                            
+                            <td>Ba. Morrissette rush for loss of 3 yards to the 50 yardline (Mike Elder;Luke Reppe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 13 at GC50</td>
+                            
+                            <td>Sam Poulos pass complete to Tj Schaid for 11 yards to the CAR39 (Josh Estes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 2 at CAR39</td>
+                            
+                            <td>Sam Poulos pass complete to Max Jacobson for 4 yards to the CAR35, 1ST DOWN GC.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR35</td>
+                            
+                            <td>Sam Poulos rush for 3 yards to the CAR32 (Andrew Campbell).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 7 at CAR32</td>
+                            
+                            <td>Sam Poulos pass complete to Max Jacobson for 10 yards to the CAR22, 1ST DOWN GC (Alexander Polk).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR22</td>
+                            
+                            <td>Sam Poulos rush for 4 yards to the CAR18 (Zach Heinrich;Mike Elder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at CAR18</td>
+                            
+                            <td>Sam Poulos rush for no gain to the CAR18.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 6 at CAR18</td>
+                            
+                            <td>PENALTY GC holding (Isaac Chadri) 10 yards to the CAR28.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 16 at CAR28</td>
+                            
+                            <td>Sam Poulos pass incomplete to Tj Schaid, dropped pass.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 16 at CAR28</td>
+                            
+                            <td>3rd and 16.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 16 at CAR28</td>
+                            
+                            <td>Sam Poulos pass complete to Tj Schaid for 5 yards to the CAR23.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 11 at CAR23</td>
+                            
+                            <td>Sam Poulos pass incomplete to Cody Weber, dropped pass.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">13 plays, 39 yards, 7:12 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 07:40</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR23</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 07:40.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR23</td>
+                            
+                            <td>Jordan Butler rush for no gain to the CAR23 (Tom Brinkman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CAR23</td>
+                            
+                            <td>Conor Lynch pass incomplete to Chase Gottschk.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 10 at CAR23</td>
+                            
+                            <td>Conor Lynch pass incomplete to Anthony Kemper.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 10 at CAR23</td>
+                            
+                            <td>Alexander Polk punt 37 yards to the GC40, Tj Schaid return 0 yards to the GC40 (Mike Elder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 0 yards, 0:55 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 06:45</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC40</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 06:45.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC40</td>
+                            
+                            <td>Sam Poulos pass complete to Cody Weber for 9 yards to the GC49 (Zach Heinrich;Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 1 at GC49</td>
+                            
+                            <td>Tj Schaid rush for 1 yard to the 50 yardline, 1ST DOWN GC (Andrew Wolter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC50</td>
+                            
+                            <td>Tj Schaid rush for no gain to the 50 yardline (Braeden Ducharm).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at GC50</td>
+                            
+                            <td>PENALTY GC holding 10 yards to the GC40.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 20 at GC40</td>
+                            
+                            <td>1st and 20.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 20 at GC40</td>
+                            
+                            <td>Tj Schaid rush for 8 yards to the GC48 (Zach Heinrich;Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 12 at GC48</td>
+                            
+                            <td>Sam Poulos pass incomplete to Jayson Campos.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 12 at GC48</td>
+                            
+                            <td>Sam Poulos pass incomplete to Cody Weber.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 12 at GC48</td>
+                            
+                            <td>Graham Fisher rush for loss of 2 yards to the GC46 (Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">7 plays, 6 yards, 2:43 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 04:02</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC46</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 04:02.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC46</td>
+                            
+                            <td>Conor Lynch pass complete to John Baker for 19 yards to the GC27, 1ST DOWN CAR (Drew Blumberg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC27</td>
+                            
+                            <td>John Baker rush for 4 yards to the GC23 (Ki Harris).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at GC23</td>
+                            
+                            <td>John Baker rush for 11 yards to the GC12, 1ST DOWN CAR (John Mertes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC12</td>
+                            
+                            <td>Conor Lynch pass incomplete to Brian Frett.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at GC12</td>
+                            
+                            <td>Conor Lynch pass complete to Brian Frett for 6 yards to the GC6 (Drew Blumberg;John Mertes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 4 at GC06</td>
+                            
+                            <td>Nathan Potter rush for 4 yards to the GC2, 1ST DOWN CAR (Clay. Desjardin;Kevin Hwang).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at GC02</td>
+                            
+                            <td>Andy Zweber rush for 2 yards to the GC0, TOUCHDOWN, clock 01:38.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                                             <td>&#160;</td>
+                            <td>Kyle Kasten kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Carleton 7, Grinnell 14</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">7 plays, 46 yards, 2:24 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                                             <td>&#160;</td>
+                            <td>Ted Lozier kickoff 45 yards to the GC20, Seth Gustafson return 16 yards to the GC36 (Jonathan Rowe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 01:32</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC36</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 01:32.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC36</td>
+                            
+                            <td>Sam Poulos rush for 5 yards to the GC41.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at GC41</td>
+                            
+                            <td>Ba. Morrissette rush for loss of 10 yards to the GC31 (Mike Elder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 15 at GC31</td>
+                            
+                            <td>Sam Poulos rush for 6 yards to the GC37 (Keenan Hartert).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr4" class="align-center summary"><div class="stats-header">       4th 
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 9 at GC37</td>
+                            
+                            <td>Start of 4th quarter, clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 9 at GC37</td>
+                            
+                            <td>Graham Fisher punt 39 yards to the CAR24, Mike Elder return 6 yards to the CAR30 (Clay. Desjardin).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">3 plays, 1 yards, 1:43 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 14:49</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR30</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 14:49.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR30</td>
+                            
+                            <td>Conor Lynch pass incomplete to Anthony Kemper.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CAR30</td>
+                            
+                            <td>John Baker rush for 3 yards to the CAR33 (Tom Brinkman;Ki Harris).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at CAR33</td>
+                            
+                            <td>Conor Lynch pass complete to Anthony Kemper for 8 yards to the CAR41, 1ST DOWN CAR (Max Keller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR41</td>
+                            
+                            <td>Conor Lynch rush for loss of 3 yards to the CAR38, fumble by Conor Lynch recovered by CAR Conor Lynch at CAR38.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 13 at CAR38</td>
+                            
+                            <td>Conor Lynch pass complete to Chase Gottschk for 14 yards to the GC48, 1ST DOWN CAR (Drew Blumberg), PENALTY GC roughing passer (Brian Taylor) 15 yards to the GC33, 1ST DOWN CAR.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC33</td>
+                            
+                            <td>1st and 10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC33</td>
+                            
+                            <td>John Baker rush for 13 yards to the GC20, 1ST DOWN CAR (Drew Blumberg;Kevin Hwang).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC20</td>
+                            
+                            <td>John Baker rush for 14 yards to the GC6, 1ST DOWN CAR (Seth Gustafson).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at GC06</td>
+                            
+                            <td>Timeout Grinnell College, clock 12:20.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at GC06</td>
+                            
+                            <td>John Baker rush for 5 yards to the GC1 (David Ternes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at GC01</td>
+                            
+                            <td>Conor Lynch rush for no gain to the GC1 (David Ternes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd bold">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at GC01</td>
+                            
+                            <td>Andy Zweber rush for 1 yard to the GC0, TOUCHDOWN, clock 11:07.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                                             <td>&#160;</td>
+                            <td>Kyle Kasten kick attempt good.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Carleton 14, Grinnell 14</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">10 plays, 70 yards, 3:42 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Ted Lozier kickoff 48 yards to the GC17, Andrew Clark return 0 yards to the GC17, fumble by Andrew Clark recovered by GC Andrew Clark at GC23.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 11:02</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC23</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 11:02, GC ball on GC23.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC23</td>
+                            
+                            <td>Sam Poulos pass complete to Max Jacobson for 6 yards to the GC29 (Mike Elder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at GC29</td>
+                            
+                            <td>Sam Poulos pass complete to Cody Weber for 12 yards to the GC41, 1ST DOWN GC (Paul Hoffer;Braeden Ducharm).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC41</td>
+                            
+                            <td>Sam Poulos pass incomplete to Cody Weber.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at GC41</td>
+                            
+                            <td>Sam Poulos pass complete to Tj Schaid for 9 yards to the 50 yardline (Zach Heinrich).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at GC50</td>
+                            
+                            <td>Tj Schaid rush for 2 yards to the CAR48, 1ST DOWN GC (Mike Elder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR48</td>
+                            
+                            <td>Sam Poulos pass complete to Max Jacobson for 5 yards to the CAR43 (Paul Hoffer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at CAR43</td>
+                            
+                            <td>Sam Poulos rush for 5 yards to the CAR38, 1ST DOWN GC.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR38</td>
+                            
+                            <td>Sam Poulos pass incomplete to Harnak Mann, dropped pass (Paul Hoffer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 10 at CAR38</td>
+                            
+                            <td>Sam Poulos pass complete to Max Jacobson for 5 yards to the CAR33 (C.J. James).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 5 at CAR33</td>
+                            
+                            <td>Tj Schaid rush for loss of 7 yards to the CAR40 (Andrew Wolter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 12 at CAR40</td>
+                            
+                            <td>Graham Fisher punt 26 yards to the CAR14, out-of-bounds.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">10 plays, 37 yards, 5:00 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 06:02</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR14</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 06:02.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR14</td>
+                            
+                            <td>John Baker rush for 5 yards to the CAR19 (David Ternes;Max Keller).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at CAR19</td>
+                            
+                            <td>John Baker rush for loss of 2 yards to the CAR17 (John Mertes;Drew Blumberg).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at CAR17</td>
+                            
+                            <td>Conor Lynch pass incomplete to Chase Gottschk (Kevin Hwang).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 7 at CAR17</td>
+                            
+                            <td>Alexander Polk punt 23 yards to the CAR40, downed.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="even"><td colspan="2" class="summary bold">3 plays, 3 yards, 1:31 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 04:31</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR40</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 04:31.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR40</td>
+                            
+                            <td>Sam Poulos pass complete to Max Jacobson for 11 yards to the CAR29, 1ST DOWN GC (C.J. James).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR29</td>
+                            
+                            <td>Sam Poulos rush for 6 yards to the CAR23.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 4 at CAR23</td>
+                            
+                            <td>Tj Schaid rush for 7 yards to the CAR16, 1ST DOWN GC (Paul Hoffer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR16</td>
+                            
+                            <td>Tj Schaid rush for 4 yards to the CAR12 (Luke Reppe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 6 at CAR12</td>
+                            
+                            <td>Tj Schaid rush for 7 yards to the CAR5, 1ST DOWN GC (Mike Elder;Luke Reppe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at CAR05</td>
+                            
+                            <td>Tj Schaid rush for loss of 4 yards to the CAR9.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at CAR09</td>
+                            
+                            <td>Timeout Carleton College, clock 01:28.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at CAR09</td>
+                            
+                            <td>Tj Schaid rush for loss of 1 yard to the CAR10 (Andrew Wolter).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at CAR10</td>
+                            
+                            <td>Timeout Carleton College, clock 01:21.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and Goal at CAR10</td>
+                            
+                            <td>Tj Schaid rush for 3 yards to the CAR7 (Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">       4th 
+       and Goal at CAR07</td>
+                            
+                            <td>Timeout Carleton College, clock 01:13.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and Goal at CAR07</td>
+                            
+                            <td>Daniel Munger field goal attempt from 24 BLOCKED, recovered by GC Team at CAR20 spot at CAR20, clock 01:05 (blocked by Mike Elder).</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">9 plays, 33 yards, 3:26 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 01:05</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR20</td>
+                            
+                            <td>John Baker rush for 1 yard to the CAR21 (David Ternes).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at CAR21</td>
+                            
+                            <td>Timeout Grinnell College, clock 00:55.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at CAR21</td>
+                            
+                            <td>Andy Zweber rush for 2 yards to the CAR23 (Ki Harris).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at CAR23</td>
+                            
+                            <td>End of game, clock 00:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">2 plays, 3 yards, 1:05 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Carleton 14, Grinnell 14</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                             <tr><td colspan="2" id="qtr5" class="align-center summary"><div class="stats-header">      OT
+      </div></td></tr>
+
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at CAR23</td>
+                            
+                            <td>Start of OT  quarter, clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at CAR23</td>
+                            
+                            <td>CAR ball on GC25.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 7 at GC25</td>
+                            
+                            <td>1st and 10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at GC25</td>
+                            
+                            <td>Conor Lynch pass complete to Brian Frett for 17 yards to the GC8, 1ST DOWN CAR (Kevin Hwang).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at GC08</td>
+                            
+                            <td>John Baker rush for 2 yards to the GC6 (Brian Taylor;Tom Brinkman).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even bold">
+                                                
+                                                            <td class="nowrap">      2nd
+       and Goal at GC06</td>
+                            
+                            <td>Andy Zweber rush for 6 yards to the GC0, TOUCHDOWN, clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                                             <td>&#160;</td>
+                            <td>Kyle Kasten kick attempt failed.</td>
+                                                 </tr>
+                        
+                                                
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="bold">
+                            <td>&#160;</td>
+                            <td>Carleton 20, Grinnell 14</td>
+                        </tr>
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and Goal at CAR35</td>
+                            
+                            <td>Change of possession, GC ball on CAR25, 1st and 10.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Grinnell at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR25</td>
+                            
+                            <td>GRINNELL COLLEGE drive start at 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR25</td>
+                            
+                            <td>Sam Poulos pass complete to Max Jacobson for 5 yards to the CAR20 (C.J. James).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 5 at CAR20</td>
+                            
+                            <td>Tj Schaid rush for 4 yards to the CAR16 (Zach Heinrich).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 1 at CAR16</td>
+                            
+                            <td>Tj Schaid rush for 4 yards to the CAR12, 1ST DOWN GC (Zach Heinrich;Luke Reppe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR12</td>
+                            
+                            <td>Sam Poulos pass complete to Tj Schaid for 1 yard to the CAR11 (Mike Elder).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      2nd
+       and 9 at CAR11</td>
+                            
+                            <td>Tj Schaid rush for 1 yard to the CAR10 (Nick Herringer).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      3rd
+       and 8 at CAR10</td>
+                            
+                            <td>Sam Poulos sacked for loss of 5 yards to the CAR15 (Jonathan Rowe).</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">       4th 
+       and 13 at CAR15</td>
+                            
+                            <td>Sam Poulos sacked for loss of 20 yards to the CAR35 (Caleb Hyde), fumble by Sam Poulos recovered by GC Sam Poulos at CAR40, Sam Poulos for loss of 20 yards to the GC40, Sam Poulos pass intercepted by Paul Hoffer at the CAR0, Paul Hoffer return 0 yards to the CAR0, touchback.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">8 plays, -35 yards, 0:00 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                     
+                                                    <tr><th colspan="2">Carleton at 15:00</th></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="odd">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR20</td>
+                            
+                            <td>CARLETON COLLEGE drive start at 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                        
+                                                                    <tr class="even">
+                                                
+                                                            <td class="nowrap">      1st
+       and 10 at CAR20</td>
+                            
+                            <td>End of game, clock 15:00.</td>
+                                                 </tr>
+                        
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                            <tr class="odd"><td colspan="2" class="summary bold">0 plays, 0 yards, 15:00 elapsed</td></tr>
+                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                 
+                
+                                    
+                                                                    
+                                        
+                                         
+                                                     <tr><td colspan="2" class="align-center"><a href="#pbp">back to top</a></td></tr>
+                                     </table>
+    </div>
+ 
+
+     
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        if (!$('.stats-tabs li.active').length) {
+            if (history.replaceState) {
+                history.replaceState({}, '', '?view=' + $('.stats-tabs li:first').addClass('active').children('a').data('view'));
+            } else {
+                $('.stats-tabs li:first').addClass('active');
+            }
+        }
+    })
+</script>
+
+<!-- from: generic theme -->
+
+<!-- rum footer -->
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"applicationID":"1004718","applicationTime":130,"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"a8324e80d1","transactionName":"MgcAZENYXhJYVkFdXQtNJFldTVUTFnFaWVMMDEJeUFRVQV9cWUBXFw==","agent":"","errorBeacon":"bam.nr-data.net"}</script>
+
+
+</body>
+</html>
